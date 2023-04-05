@@ -406,3 +406,10 @@ FodyWeavers.xsd
 /WebAPI/.vs/WebAPI/DesignTimeBuild/.dtbcache.v2
 /WebAPI/.vs/ProjectEvaluation/webapi.projects.v6.1
 /WebAPI/.vs/ProjectEvaluation/webapi.metadata.v6.1
+/WebAPI/obj/Debug/net6.0/WebAPI.pdb
+/WebAPI/obj/Debug/net6.0/WebAPI.genruntimeconfig.cache
+/WebAPI/obj/Debug/net6.0/WebAPI.dll
+/WebAPI/obj/Debug/net6.0/WebAPI.csproj.FileListAbsolute.txt
+/WebAPI/bin/Debug/net6.0/WebAPI.pdb
+/WebAPI/bin/Debug/net6.0/WebAPI.dll
+/WebAPI/obj/Debug/net6.0/WebAPI.csproj.AssemblyReference.cache

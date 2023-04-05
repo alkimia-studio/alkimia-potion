@@ -402,3 +402,7 @@ FodyWeavers.xsd
 /WebAPI/obj/project.assets.json
 /WebAPI/obj/Debug/net6.0/WebAPI.GeneratedMSBuildEditorConfig.editorconfig
 /WebAPI/obj/Debug/net6.0/WebAPI.assets.cache
+/WebAPI/.vs/WebAPI/v17/.futdcache.v2
+/WebAPI/.vs/WebAPI/DesignTimeBuild/.dtbcache.v2
+/WebAPI/.vs/ProjectEvaluation/webapi.projects.v6.1
+/WebAPI/.vs/ProjectEvaluation/webapi.metadata.v6.1

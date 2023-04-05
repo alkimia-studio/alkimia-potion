@@ -1,0 +1,29 @@
+﻿using System;
+using System.Collections.Generic;
+
+namespace WebAPI.Models;
+
+public partial class Collaborator
+{
+    public int Id { get; set; }
+
+    public string Name { get; set; } = null!;
+
+    public string Surname { get; set; } = null!;
+
+    public string Email { get; set; } = null!;
+
+    public string? Emailpersonal { get; set; }
+
+    public string? Emailpec { get; set; }
+
+    public string? Tel { get; set; }
+
+    public string Cf { get; set; } = null!;
+
+    public string? Docnumber { get; set; }
+
+    public string? Address { get; set; }
+
+    public virtual ICollection<Permit> Permits { get; } = new List<Permit>();
+}

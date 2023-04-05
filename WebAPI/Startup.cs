@@ -1,12 +1,6 @@
-﻿using Microsoft.AspNetCore.Diagnostics;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Localization;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Logging;
 using Microsoft.OpenApi.Models;
-using System.Globalization;
-using System.Net;
-using System.Reflection;
 
 
 namespace WebAPI

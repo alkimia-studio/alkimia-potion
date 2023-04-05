@@ -413,3 +413,5 @@ FodyWeavers.xsd
 /WebAPI/bin/Debug/net6.0/WebAPI.pdb
 /WebAPI/bin/Debug/net6.0/WebAPI.dll
 /WebAPI/obj/Debug/net6.0/WebAPI.csproj.AssemblyReference.cache
+/WebAPI/obj/Debug/net6.0/refint/WebAPI.dll
+/WebAPI/obj/Debug/net6.0/ref/WebAPI.dll

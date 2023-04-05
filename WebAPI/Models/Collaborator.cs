@@ -25,5 +25,9 @@ public partial class Collaborator
 
     public string? Address { get; set; }
 
+    public string? Iban { get; set; }
+
+    public string? Note { get; set; }
+
     public virtual ICollection<Permit> Permits { get; } = new List<Permit>();
 }

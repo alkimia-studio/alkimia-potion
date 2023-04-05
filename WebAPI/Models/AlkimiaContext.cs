@@ -46,9 +46,15 @@ public partial class AlkimiaContext : DbContext
             entity.Property(e => e.Emailpersonal)
                 .HasMaxLength(50)
                 .HasColumnName("emailpersonal");
+            entity.Property(e => e.Iban)
+                .IsUnicode(false)
+                .HasColumnName("iban");
             entity.Property(e => e.Name)
                 .HasMaxLength(50)
                 .HasColumnName("name");
+            entity.Property(e => e.Note)
+                .HasColumnType("text")
+                .HasColumnName("note");
             entity.Property(e => e.Surname)
                 .HasMaxLength(50)
                 .HasColumnName("surname");

@@ -15,6 +15,8 @@ public partial class AlkimiaContext : DbContext
 
     public virtual DbSet<Collaborator> Collaborators { get; set; }
 
+    public virtual DbSet<Equipment> Equipments { get; set; }
+
     public virtual DbSet<Permit> Permits { get; set; }
 
 //    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -59,6 +61,36 @@ public partial class AlkimiaContext : DbContext
             entity.Property(e => e.Tel)
                 .HasMaxLength(50)
                 .HasColumnName("tel");
+        });
+
+        modelBuilder.Entity<Equipment>(entity =>
+        {
+            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.Collaborator).HasColumnName("collaborator");
+            entity.Property(e => e.Description)
+                .HasColumnType("text")
+                .HasColumnName("description");
+            entity.Property(e => e.Invoice)
+                .HasMaxLength(50)
+                .HasColumnName("invoice");
+            entity.Property(e => e.Name)
+                .HasMaxLength(50)
+                .HasColumnName("name");
+            entity.Property(e => e.Note)
+                .HasColumnType("text")
+                .HasColumnName("note");
+            entity.Property(e => e.Price).HasColumnName("price");
+            entity.Property(e => e.Purchasedate)
+                .HasColumnType("datetime")
+                .HasColumnName("purchasedate");
+            entity.Property(e => e.Serialnumber)
+                .HasMaxLength(50)
+                .HasColumnName("serialnumber");
+            entity.Property(e => e.Type).HasColumnName("type");
+
+            entity.HasOne(d => d.CollaboratorNavigation).WithMany(p => p.Equipment)
+                .HasForeignKey(d => d.Collaborator)
+                .HasConstraintName("FK_Equipments_Collaborators");
         });
 
         modelBuilder.Entity<Permit>(entity =>

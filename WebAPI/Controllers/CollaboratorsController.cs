@@ -24,6 +24,12 @@ namespace WebAPI.Controllers
             return _context.Collaborators.ToList();
         }
 
+        [HttpGet("{id}")]
+        public Collaborator? GetCollaborator(int id)
+        {
+            return _context.Collaborators.Find(id);
+        }
+
         [HttpPost]
         public ActionResult<Collaborator> InsertCollaborator(Collaborator item)
         {

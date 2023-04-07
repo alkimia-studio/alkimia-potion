@@ -26,5 +26,7 @@ public partial class Collaborator
 
     public string? Note { get; set; }
 
+    public virtual ICollection<Equipment> Equipment { get; } = new List<Equipment>();
+
     public virtual ICollection<Permit> Permits { get; } = new List<Permit>();
 }

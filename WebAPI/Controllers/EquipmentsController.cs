@@ -6,47 +6,47 @@ namespace WebAPI.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class PermitsController : Controller
+    public class EquipmentsController : Controller
     {
         private readonly AlkimiaContext _context;
 
         private readonly ILogger<PermitsController> _logger;
 
-        public PermitsController(AlkimiaContext context, ILogger<PermitsController> logger)
+        public EquipmentsController(AlkimiaContext context, ILogger<PermitsController> logger)
         {
             _logger = logger;
             _context = context;
         }
 
         [HttpGet("")]
-        public IEnumerable<Permit> GetPermits()
+        public IEnumerable<Equipment> GetEquipments()
         {
-            return _context.Permits.ToList();
-        }
-
-        [HttpGet("{collaboratorId}")]
-        public IEnumerable<Permit> GetCollaboratorPermits(int collaboratorId)
-        {
-            return _context.Permits.Where(x => x.Id == collaboratorId).ToArray();
-        }
-
-        [HttpPost]
-        public ActionResult<Collaborator> InsertPermit(Permit item)
-        {
-            _context.Permits.Add(item);
-            _context.SaveChanges();
-
-            return CreatedAtAction(nameof(InsertPermit), new { id = item.Id }, item);
+            return _context.Equipments.ToList();
         }
 
         [HttpGet("{id}")]
-        public Permit? GetPermit(int id)
+        public Equipment? GetEquipment(int id)
         {
-            return _context.Permits.Find(id);
+            return _context.Equipments.Find(id);
+        }
+
+        [HttpGet("{collaboratorId}")]
+        public IEnumerable<Equipment> GetCollaboratorEquipments(int collaboratorId)
+        {
+            return _context.Equipments.Where(x => x.Id == collaboratorId).ToArray();
+        }
+
+        [HttpPost]
+        public ActionResult<Equipment> InsertEquipment(Equipment item)
+        {
+            _context.Equipments.Add(item);
+            _context.SaveChanges();
+
+            return CreatedAtAction(nameof(InsertEquipment), new { id = item.Id }, item);
         }
 
         [HttpPut("{id}")]
-        public IActionResult EditPermit(int id, Permit item)
+        public IActionResult EditEquipment(int id, Equipment item)
         {
             if (id != item.Id)
             {
@@ -60,16 +60,16 @@ namespace WebAPI.Controllers
         }
 
         [HttpDelete("{id}")]
-        public IActionResult DeletePermit(long id)
+        public IActionResult DeleteEquipment(long id)
         {
-            var item = _context.Permits.Find(id);
+            var item = _context.Equipments.Find(id);
 
             if (item == null)
             {
                 return NotFound();
             }
 
-            _context.Permits.Remove(item);
+            _context.Equipments.Remove(item);
             _context.SaveChanges();
 
             return NoContent();

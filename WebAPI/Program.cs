@@ -23,4 +23,4 @@ public class Program
             {
                 logging.AddDebug();
             });
-    }
+}

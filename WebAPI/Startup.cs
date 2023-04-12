@@ -38,7 +38,7 @@ namespace WebAPI
                     };
                 });
             services.AddMemoryCache();
-      
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Alkimia API", Version = "v1" });
@@ -65,7 +65,7 @@ namespace WebAPI
             }
 
             app.UseRouting();
-            
+
             // Make sure you call this before calling app.UseMvc()
             app.UseCors(
                 options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()

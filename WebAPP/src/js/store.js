@@ -1,6 +1,6 @@
 
 import { createStore } from 'framework7/lite';
-import { getCollaborators } from "./api";
+import API  from "./api";
 
 const store = createStore({
     state: {
@@ -36,7 +36,7 @@ const store = createStore({
             state.products = [...state.products, product];
         },
         loadCollaborators({ state }) {
-            getCollaborators()
+            API.getCollaborators()
                 .then(data => {
                     state.collaborators = data;
                 })

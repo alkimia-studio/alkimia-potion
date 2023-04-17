@@ -47,10 +47,14 @@
                 <div>{{ collaborator.note }}</div>
             </div>
         </f7-block>
+        <f7-block>
+            <f7-button fill small @click="postCollaborator(collaborator)">Save Collaborator</f7-button>
+        </f7-block>
     </f7-page>
 </template>
 <script>
     import { useStore } from 'framework7-vue';
+    import store from '../js/store';
 
     export default {
         props: {
@@ -66,8 +70,11 @@
                 }
             });
 
-            const postCollaborator = () => {
-                store.dispatch('postCollaborator', collaborator);
+            const postCollaborator = (collaborator) => {
+                if(collaborator.id == 0)
+                    store.dispatch('postCollaborator', collaborator);
+                else
+                    store.dispatch('putCollaborator', collaborator);
             };
 
             return {

@@ -8,7 +8,7 @@
                           :link="`/collaborator/${collaborator.id}/`"></f7-list-item>
         </f7-list>
         <f7-block>
-            <f7-button fill small @click="addCollaborator">Add Collaborators</f7-button>
+            <f7-button fill small @click="addCollaborator">Add Collaborator</f7-button>
         </f7-block>
     </f7-page>
 </template>

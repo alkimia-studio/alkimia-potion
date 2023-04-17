@@ -18,7 +18,18 @@ const store = createStore({
             state.collaborators = [...state.collaborators, collaborator];
         },
         postCollaborator({ state }, collaborator) {
-            //TODO
+            API.postCollaborator(collaborator)
+                .then(data => {
+                    store.dispatch('loadCollaborators');
+                })
+                .catch(err => console.log(err))
+        },
+        putCollaborator({ state }, collaborator) {
+            API.putCollaborator(collaborator)
+                .then(data => {
+                    
+                })
+                .catch(err => console.log(err))
         },
         loadCollaborators({ state }) {
             API.getCollaborators()

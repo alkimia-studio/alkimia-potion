@@ -8,4 +8,8 @@
     <BuildCommand>
     </BuildCommand>
   </PropertyGroup>
+  <ItemGroup>
+    <Folder Include="src\components\example\" />
+    <Folder Include="src\pages\example\" />
+  </ItemGroup>
 </Project>

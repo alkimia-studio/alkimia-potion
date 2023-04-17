@@ -2,10 +2,10 @@
 import HomePage from '../pages/home.vue';
 import AboutPage from '../pages/about.vue';
 import FormPage from '../pages/form.vue';
-import CatalogPage from '../pages/catalog.vue';
-import ProductPage from '../pages/product.vue';
-import SettingsPage from '../pages/settings.vue';
+import CollaboratorsPage from '../pages/collaborators.vue';
 import CollaboratorPage from '../pages/collaborator.vue';
+import EquipmentsPage from '../pages/equipments.vue';
+import PermitsPage from '../pages/permits.vue';
 
 import DynamicRoutePage from '../pages/dynamic-route.vue';
 import RequestAndLoad from '../pages/request-and-load.vue';
@@ -25,22 +25,21 @@ var routes = [
         component: FormPage,
     },
     {
-        path: '/catalog/',
-        component: CatalogPage,
-    },
-    {
-        path: '/product/:id/',
-        component: ProductPage,
+        path: '/collaborators/',
+        component: CollaboratorsPage,
     },
     {
         path: '/collaborator/:id/',
         component: CollaboratorPage,
     },
     {
-        path: '/settings/',
-        component: SettingsPage,
+        path: '/permits/',
+        component: PermitsPage,
     },
-
+    {
+        path: '/equipments/',
+        component: EquipmentsPage,
+    },
     {
         path: '/dynamic-route/blog/:blogId/post/:postId/',
         component: DynamicRoutePage,

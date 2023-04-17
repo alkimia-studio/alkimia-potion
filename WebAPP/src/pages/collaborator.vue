@@ -1,9 +1,51 @@
 <template>
     <f7-page name="collaborator">
-        <f7-navbar :title="collaborator.name" back-link="Back"></f7-navbar>
-        <f7-block-title>About {{ collaborator.name + ' ' + collaborator.surname }}</f7-block-title>
+        <f7-navbar :title="collaborator.name + ' ' + collaborator.surname" back-link="Back"></f7-navbar>
         <f7-block>
-            {{ collaborator.email }}
+            <div class="grid grid-cols-2 grid-gap">
+                <div>Name</div>
+                <div>{{ collaborator.name }}</div>
+            </div>
+            <div class="grid grid-cols-2 grid-gap">
+                <div>Surname</div>
+                <div>{{ collaborator.surname }}</div>
+            </div>
+            <div class="grid grid-cols-2 grid-gap">
+                <div>Address</div>
+                <div>{{ collaborator.address }}</div>
+            </div>
+            <div class="grid grid-cols-2 grid-gap">
+                <div>CF</div>
+                <div>{{ collaborator.cf }}</div>
+            </div>
+            <div class="grid grid-cols-2 grid-gap">
+                <div>Doc. number</div>
+                <div>{{ collaborator.docnumber }}</div>
+            </div>
+            <div class="grid grid-cols-2 grid-gap">
+                <div>IBAN</div>
+                <div>{{ collaborator.iban }}</div>
+            </div>
+            <div class="grid grid-cols-2 grid-gap">
+                <div>Telephone</div>
+                <div>{{ collaborator.tel }}</div>
+            </div>
+            <div class="grid grid-cols-2 grid-gap">
+                <div>Business email</div>
+                <div>{{ collaborator.email }}</div>
+            </div>
+            <div class="grid grid-cols-2 grid-gap">
+                <div>Personal email</div>
+                <div>{{ collaborator.emailpersonal }}</div>
+            </div>
+            <div class="grid grid-cols-2 grid-gap">
+                <div>PEC Email</div>
+                <div>{{ collaborator.emailpec }}</div>
+            </div>
+            <div class="grid grid-cols-2 grid-gap">
+                <div>Note</div>
+                <div>{{ collaborator.note }}</div>
+            </div>
         </f7-block>
     </f7-page>
 </template>
@@ -23,8 +65,14 @@
                     currentCollaborator = collaborator;
                 }
             });
+
+            const postCollaborator = () => {
+                store.dispatch('postCollaborator', collaborator);
+            };
+
             return {
                 collaborator: currentCollaborator,
+                postCollaborator
             };
         },
     };

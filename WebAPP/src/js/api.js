@@ -1,10 +1,12 @@
+const _apiUrl = "https://localhost:7237/";
+
 import axios from 'axios'
 
 export default class API { 
     static getCollaborators() {
         var config = {
             method: 'get',
-            url: 'https://localhost:7237/Collaborators',
+            url: _apiUrl + 'Collaborators',
             headers: {}
         };
 

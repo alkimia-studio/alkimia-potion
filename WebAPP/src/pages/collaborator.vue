@@ -1,53 +1,53 @@
 <template>
     <f7-page name="collaborator">
-        <f7-navbar :title="collaborator.name + ' ' + collaborator.surname" back-link="Back"></f7-navbar>
+        <f7-navbar :title="collaborator.name + ' ' + collaborator.surname" back-link="Back">&nbsp;&nbsp;&nbsp;<f7-toggle v-model:checked="editMode"></f7-toggle>&nbsp;<span>Edit</span></f7-navbar> 
         <f7-block>
             <div class="grid grid-cols-2 grid-gap">
                 <div>Name</div>
-                <div>{{ collaborator.name }}</div>
+                <div><f7-input type="text" :disabled="!editMode" v-model:value="collaborator.name" /></div>
             </div>
             <div class="grid grid-cols-2 grid-gap">
                 <div>Surname</div>
-                <div>{{ collaborator.surname }}</div>
+                <div><f7-input type="text" :disabled="!editMode" v-model:value="collaborator.surname" /></div>
             </div>
             <div class="grid grid-cols-2 grid-gap">
                 <div>Address</div>
-                <div>{{ collaborator.address }}</div>
+                <div><f7-input type="text" :disabled="!editMode" v-model:value="collaborator.address" /></div>
             </div>
             <div class="grid grid-cols-2 grid-gap">
                 <div>CF</div>
-                <div>{{ collaborator.cf }}</div>
+                <div><f7-input type="text" :disabled="!editMode" v-model:value="collaborator.cf" /></div>
             </div>
             <div class="grid grid-cols-2 grid-gap">
                 <div>Doc. number</div>
-                <div>{{ collaborator.docnumber }}</div>
+                <div><f7-input type="text" :disabled="!editMode" v-model:value="collaborator.docnumber" /></div>
             </div>
             <div class="grid grid-cols-2 grid-gap">
                 <div>IBAN</div>
-                <div>{{ collaborator.iban }}</div>
+                <div><f7-input type="text" :disabled="!editMode" v-model:value="collaborator.iban" /></div>
             </div>
             <div class="grid grid-cols-2 grid-gap">
                 <div>Telephone</div>
-                <div>{{ collaborator.tel }}</div>
+                <div><f7-input type="text" :disabled="!editMode" v-model:value="collaborator.tel" /></div>
             </div>
             <div class="grid grid-cols-2 grid-gap">
                 <div>Business email</div>
-                <div>{{ collaborator.email }}</div>
+                <div><f7-input type="text" :disabled="!editMode" v-model:value="collaborator.email" /></div>
             </div>
             <div class="grid grid-cols-2 grid-gap">
                 <div>Personal email</div>
-                <div>{{ collaborator.emailpersonal }}</div>
+                <div><f7-input type="text" :disabled="!editMode" v-model:value="collaborator.emailpersonal" /></div>
             </div>
             <div class="grid grid-cols-2 grid-gap">
                 <div>PEC Email</div>
-                <div>{{ collaborator.emailpec }}</div>
+                <div><f7-input type="text" :disabled="!editMode" v-model:value="collaborator.emailpec" /></div>
             </div>
             <div class="grid grid-cols-2 grid-gap">
                 <div>Note</div>
-                <div>{{ collaborator.note }}</div>
+                <div><f7-input type="text" :disabled="!editMode" v-model:value="collaborator.note" /></div>
             </div>
         </f7-block>
-        <f7-block>
+        <f7-block v-if="editMode">
             <f7-button fill small @click="postCollaborator(collaborator)">Save Collaborator</f7-button>
         </f7-block>
     </f7-page>
@@ -58,7 +58,12 @@
 
     export default {
         props: {
-            f7route: Object,
+            f7route: Object
+        },
+        data() {
+            return {
+                editMode: false
+            }
         },
         setup(props) {
             const collaborators = useStore('collaborators');

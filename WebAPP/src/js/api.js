@@ -24,9 +24,9 @@ export default class API {
     static postCollaborator(collaborator) {
         var config = {
             method: 'post',
-            url: _apiUrl + 'Collaborator',
-            headers: {},
-            body: collaborator
+            url: _apiUrl + 'Collaborators',
+            headers: { 'Content-Type': 'application/json; charset=utf-8' },
+            data: collaborator
         };
 
         const dataPromise = axios(config)
@@ -46,6 +46,118 @@ export default class API {
             url: _apiUrl + 'Collaborators/' + collaborator.id,
             headers: { 'Content-Type': 'application/json; charset=utf-8' },
             data: collaborator
+        };
+
+        const dataPromise = axios(config)
+            .then(function (response) {
+                return response.data;
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+
+        return dataPromise
+    }
+
+    static getEquipments() {
+        var config = {
+            method: 'get',
+            url: _apiUrl + 'Equipments',
+            headers: {}
+        };
+
+        const dataPromise = axios(config)
+            .then(function (response) {
+                return response.data;
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+
+        return dataPromise
+    }
+
+    static postEquipment(equipment) {
+        var config = {
+            method: 'post',
+            url: _apiUrl + 'Equipments',
+            headers: { 'Content-Type': 'application/json; charset=utf-8' },
+            data: equipment
+        };
+
+        const dataPromise = axios(config)
+            .then(function (response) {
+                return response.data;
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+
+        return dataPromise
+    }
+
+    static putEquipment(equipment) {
+        var config = {
+            method: 'put',
+            url: _apiUrl + 'Equipments/' + equipment.id,
+            headers: { 'Content-Type': 'application/json; charset=utf-8' },
+            data: equipment
+        };
+
+        const dataPromise = axios(config)
+            .then(function (response) {
+                return response.data;
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+
+        return dataPromise
+    }
+
+    static getPermits() {
+        var config = {
+            method: 'get',
+            url: _apiUrl + 'Permits',
+            headers: {}
+        };
+
+        const dataPromise = axios(config)
+            .then(function (response) {
+                return response.data;
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+
+        return dataPromise
+    }
+
+    static postPermit(permit) {
+        var config = {
+            method: 'post',
+            url: _apiUrl + 'Permits',
+            headers: { 'Content-Type': 'application/json; charset=utf-8' },
+            data: permit
+        };
+
+        const dataPromise = axios(config)
+            .then(function (response) {
+                return response.data;
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+
+        return dataPromise
+    }
+
+    static putPermit(permit) {
+        var config = {
+            method: 'put',
+            url: _apiUrl + 'Permits/' + permit.id,
+            headers: { 'Content-Type': 'application/json; charset=utf-8' },
+            data: permit
         };
 
         const dataPromise = axios(config)

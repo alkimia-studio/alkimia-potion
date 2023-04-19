@@ -11,6 +11,12 @@ const store = createStore({
     getters: {
         collaborators({ state }) {
             return state.collaborators;
+        },
+        equipments({ state }) {
+            return state.equipments;
+        },
+        permits({ state }) {
+            return state.permits;
         }
     },
     actions: {
@@ -38,9 +44,61 @@ const store = createStore({
                 })
                 .catch(err => console.log(err))
 
-        }
+        },
+        addEquipment({ state }, equipment) {
+            state.equipments = [...state.equipments, equipment];
+        },
+        postEquipment({ state }, equipment) {
+            API.postEquipment(equipment)
+                .then(data => {
+                    store.dispatch('loadEquipments');
+                })
+                .catch(err => console.log(err))
+        },
+        putEquipment({ state }, equipment) {
+            API.putEquipment(equipment)
+                .then(data => {
+
+                })
+                .catch(err => console.log(err))
+        },
+        loadEquipments({ state }) {
+            API.getEquipments()
+                .then(data => {
+                    state.equipments = data;
+                })
+                .catch(err => console.log(err))
+
+        },
+        addPermit({ state }, permit) {
+            state.permits = [...state.permits, permit];
+        },
+        postPermit({ state }, permit) {
+            API.postPermit(permit)
+                .then(data => {
+                    store.dispatch('loadPermits');
+                })
+                .catch(err => console.log(err))
+        },
+        putPermit({ state }, permit) {
+            API.putPermit(permit)
+                .then(data => {
+
+                })
+                .catch(err => console.log(err))
+        },
+        loadPermits({ state }) {
+            API.getPermits()
+                .then(data => {
+                    state.permits = data;
+                })
+                .catch(err => console.log(err))
+
+        },
     },
 })
 export default store;
 
 store.dispatch('loadCollaborators');
+store.dispatch('loadEquipments');
+store.dispatch('loadPermits');

@@ -5,7 +5,9 @@ import FormPage from '../pages/form.vue';
 import CollaboratorsPage from '../pages/collaborators.vue';
 import CollaboratorPage from '../pages/collaborator.vue';
 import EquipmentsPage from '../pages/equipments.vue';
+import EquipmentPage from '../pages/equipment.vue';
 import PermitsPage from '../pages/permits.vue';
+import PermitPage from '../pages/permit.vue';
 
 import DynamicRoutePage from '../pages/dynamic-route.vue';
 import RequestAndLoad from '../pages/request-and-load.vue';
@@ -37,8 +39,16 @@ var routes = [
         component: PermitsPage,
     },
     {
+        path: '/permit/:id/',
+        component: PermitPage,
+    },
+    {
         path: '/equipments/',
         component: EquipmentsPage,
+    },
+    {
+        path: '/equipment/:id/',
+        component: EquipmentPage,
     },
     {
         path: '/dynamic-route/blog/:blogId/post/:postId/',

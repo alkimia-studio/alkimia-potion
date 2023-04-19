@@ -41,6 +41,6 @@
                 collaborators,
                 addCollaborator
             };
-        },
+        }
     };
 </script>

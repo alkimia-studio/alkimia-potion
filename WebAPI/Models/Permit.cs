@@ -4,7 +4,7 @@ public partial class Permit
 {
     public int Id { get; set; }
 
-    public int Collaborator { get; set; }
+    public int? Collaborator { get; set; }
 
     public DateTime From { get; set; }
 
@@ -20,5 +20,5 @@ public partial class Permit
 
     public string Type { get; set; } = null!;
 
-    public virtual Collaborator CollaboratorNavigation { get; set; } = null!;
+    public virtual Collaborator? CollaboratorNavigation { get; set; }
 }

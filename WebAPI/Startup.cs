@@ -59,10 +59,6 @@ namespace WebAPI
                 app.UseDeveloperExceptionPage();
                 IdentityModelEventSource.ShowPII = true;
             }
-            else
-            {
-
-            }
 
             app.UseRouting();
 

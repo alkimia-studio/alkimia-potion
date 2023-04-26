@@ -62,7 +62,7 @@ namespace WebAPI.Controllers
         [HttpDelete("{id}")]
         public IActionResult DeletePermit(long id)
         {
-            var item = _context.Permits.Find(id);
+            var item = _context.Permits.FirstOrDefault(p => p.Id == id);
 
             if (item == null)
             {

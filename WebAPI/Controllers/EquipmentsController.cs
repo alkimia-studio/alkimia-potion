@@ -62,7 +62,7 @@ namespace WebAPI.Controllers
         [HttpDelete("{id}")]
         public IActionResult DeleteEquipment(long id)
         {
-            var item = _context.Equipments.Find(id);
+            var item = _context.Equipments.FirstOrDefault(e => e.Id == id);
 
             if (item == null)
             {

@@ -1,6 +1,6 @@
 <template>
     <f7-page name="permit">
-        <f7-navbar :title="permit.type" back-link="Back">&nbsp;&nbsp;&nbsp;<f7-toggle v-model:checked="editMode"></f7-toggle>&nbsp;<span>Edit</span></f7-navbar> 
+        <f7-navbar :title="permit.type" back-link="Back">&nbsp;&nbsp;&nbsp;<f7-toggle v-model:checked="editMode"></f7-toggle>&nbsp;<span>Edit</span>&nbsp;<f7-button small fill color="red" @click="deletePermit(permit.id)">Delete</f7-button></f7-navbar> 
         <f7-block>
             <div class="grid grid-cols-2 grid-gap">
                 <div>Type</div>
@@ -38,7 +38,8 @@
 
     export default {
         props: {
-            f7route: Object
+            f7route: Object,
+            f7router: Object,
         },
         data() {
             return {
@@ -62,9 +63,17 @@
                     store.dispatch('putPermit', permit);
             };
 
+            const deletePermit = (permitId) => {
+                if (confirm('Are you sure?')) {
+                    store.dispatch('deletePermit', permitId);
+                    props.f7router.navigate('/Permits/');
+                }
+            };
+
             return {
                 permit: currentPermit,
-                postPermit
+                postPermit,
+                deletePermit
             };
         },
     };

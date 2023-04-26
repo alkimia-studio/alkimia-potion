@@ -60,6 +60,24 @@ export default class API {
         return dataPromise
     }
 
+    static deleteCollaborator(collaboratorId) {
+        var config = {
+            method: 'delete',
+            url: _apiUrl + 'Collaborators/' + collaboratorId,
+            headers: {}
+        };
+
+        const dataPromise = axios(config)
+            .then(function (response) {
+                return response.data;
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+
+        return dataPromise
+    }
+
     static getEquipments() {
         var config = {
             method: 'get',
@@ -116,6 +134,24 @@ export default class API {
         return dataPromise
     }
 
+    static deleteEquipment(equipmentId) {
+        var config = {
+            method: 'delete',
+            url: _apiUrl + 'Equipments/' + equipmentId,
+            headers: {}
+        };
+
+        const dataPromise = axios(config)
+            .then(function (response) {
+                return response.data;
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+
+        return dataPromise
+    }
+
     static getPermits() {
         var config = {
             method: 'get',
@@ -159,6 +195,24 @@ export default class API {
             url: _apiUrl + 'Permits/' + permit.id,
             headers: { 'Content-Type': 'application/json; charset=utf-8' },
             data: permit
+        };
+
+        const dataPromise = axios(config)
+            .then(function (response) {
+                return response.data;
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+
+        return dataPromise
+    }
+
+    static deletePermit(permitId) {
+        var config = {
+            method: 'delete',
+            url: _apiUrl + 'Permits/' + permitId,
+            headers: {}
         };
 
         const dataPromise = axios(config)

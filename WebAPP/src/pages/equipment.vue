@@ -1,6 +1,6 @@
 <template>
     <f7-page name="equipment">
-        <f7-navbar :title="equipment.name" back-link="Back">&nbsp;&nbsp;&nbsp;<f7-toggle v-model:checked="editMode"></f7-toggle>&nbsp;<span>Edit</span></f7-navbar> 
+        <f7-navbar :title="equipment.name" back-link="Back">&nbsp;&nbsp;&nbsp;<f7-toggle v-model:checked="editMode"></f7-toggle>&nbsp;<span>Edit</span>&nbsp;<f7-button small fill color="red" @click="deleteEquipment(equipment.id)">Delete</f7-button></f7-navbar> 
         <f7-block>
             <div class="grid grid-cols-2 grid-gap">
                 <div>Name</div>
@@ -46,7 +46,8 @@
 
     export default {
         props: {
-            f7route: Object
+            f7route: Object,
+            f7router: Object,
         },
         data() {
             return {
@@ -70,9 +71,17 @@
                     store.dispatch('putEquipment', equipment);
             };
 
+            const deleteEquipment = (equipmentId) => {
+                if (confirm('Are you sure?')) {
+                    store.dispatch('deleteEquipment', equipmentId);
+                    props.f7router.navigate('/Equipments/');
+                }
+            };
+
             return {
                 equipment: currentEquipment,
-                postEquipment
+                postEquipment,
+                deleteEquipment
             };
         },
     };

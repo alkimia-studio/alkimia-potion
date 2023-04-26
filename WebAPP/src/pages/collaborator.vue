@@ -1,6 +1,6 @@
 <template>
     <f7-page name="collaborator">
-        <f7-navbar :title="collaborator.name + ' ' + collaborator.surname" back-link="Back">&nbsp;&nbsp;&nbsp;<f7-toggle v-model:checked="editMode"></f7-toggle>&nbsp;<span>Edit</span></f7-navbar> 
+        <f7-navbar :title="collaborator.name + ' ' + collaborator.surname" back-link="Back">&nbsp;&nbsp;&nbsp;<f7-toggle v-model:checked="editMode"></f7-toggle>&nbsp;<span>Edit</span>&nbsp;<f7-button small fill color="red" @click="deleteCollaborator(collaborator.id)">Delete</f7-button></f7-navbar> 
         <f7-block>
             <div class="grid grid-cols-2 grid-gap">
                 <div>Name</div>
@@ -58,7 +58,8 @@
 
     export default {
         props: {
-            f7route: Object
+            f7route: Object,
+            f7router: Object,
         },
         data() {
             return {
@@ -82,9 +83,17 @@
                     store.dispatch('putCollaborator', collaborator);
             };
 
+            const deleteCollaborator = (collaboratorId) => {
+                if (confirm('Are you sure?')) {
+                    store.dispatch('deleteCollaborator', collaboratorId);
+                    props.f7router.navigate('/Collaborators/');
+                }
+            };
+
             return {
                 collaborator: currentCollaborator,
-                postCollaborator
+                postCollaborator,
+                deleteCollaborator
             };
         },
     };

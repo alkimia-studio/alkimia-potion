@@ -56,7 +56,7 @@ namespace WebAPI.Controllers
         [HttpDelete("{id}")]
         public IActionResult DeleteCollaborator(long id)
         {
-            var item = _context.Collaborators.Find(id);
+            var item = _context.Collaborators.FirstOrDefault(c => c.Id == id);
 
             if (item == null)
             {

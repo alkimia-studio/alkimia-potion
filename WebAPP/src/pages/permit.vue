@@ -3,6 +3,14 @@
         <f7-navbar :title="permit.type" back-link="Back">&nbsp;&nbsp;&nbsp;<f7-toggle v-model:checked="editMode"></f7-toggle>&nbsp;<span>Edit</span>&nbsp;<f7-button small fill color="red" @click="deletePermit(permit.id)">Delete</f7-button></f7-navbar> 
         <f7-block>
             <div class="grid grid-cols-2 grid-gap">
+                <div>Collaboratore</div>
+                <div>
+                    <f7-input type="select" :disabled="!editMode" placeholder="Please choose collaborator..." v-model:value="permit.collaborator">
+                        <option v-for="(col, index) in collaborators" :value="col.id">{{col.name + " " + col.surname}}</option>
+                    </f7-input>
+                </div>
+            </div>
+            <div class="grid grid-cols-2 grid-gap">
                 <div>Type</div>
                 <div><f7-input type="text" :disabled="!editMode" v-model:value="permit.type" /></div>
             </div>
@@ -48,6 +56,7 @@
         },
         setup(props) {
             const permits = useStore('permits');
+            const collaborators = useStore('collaborators');
             const permitId = props.f7route.params.id;
             let currentPermit;
             permits.value.forEach(function (permit) {
@@ -72,6 +81,7 @@
 
             return {
                 permit: currentPermit,
+                collaborators,
                 postPermit,
                 deletePermit
             };

@@ -11,6 +11,14 @@
                 <div><f7-input type="text" :disabled="!editMode" v-model:value="equipment.description" /></div>
             </div>
             <div class="grid grid-cols-2 grid-gap">
+                <div>Collaboratore</div>
+                <div>
+                    <f7-input type="select" placeholder="Please choose collaborator..." v-model:value="equipment.collaborator">
+                        <option v-for="(col, index) in collaborators" :value="col.id">{{col.name + " " + col.surname}}</option>
+                    </f7-input>
+                </div>
+            </div>
+            <div class="grid grid-cols-2 grid-gap">
                 <div>Serial number</div>
                 <div><f7-input type="text" :disabled="!editMode" v-model:value="equipment.serialnumber" /></div>
             </div>
@@ -56,6 +64,8 @@
         },
         setup(props) {
             const equipments = useStore('equipments');
+            const collaborators = useStore('collaborators');
+
             const equipmentId = props.f7route.params.id;
             let currentEquipment;
             equipments.value.forEach(function (equipment) {
@@ -80,6 +90,7 @@
 
             return {
                 equipment: currentEquipment,
+                collaborators,
                 postEquipment,
                 deleteEquipment
             };

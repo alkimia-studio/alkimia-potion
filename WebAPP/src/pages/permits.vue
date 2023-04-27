@@ -23,7 +23,7 @@
             const addPermit = () => {
                 store.dispatch('addPermit', {
                     "id": 0,
-                    "collaborator": 1,
+                    "collaborator": 0,
                     "from": "",
                     "to": "",
                     "allday": true,

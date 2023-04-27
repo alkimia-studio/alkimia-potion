@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WebAPI.Models;
 
@@ -6,19 +7,19 @@ namespace WebAPI.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class EquipmentsController : Controller
+    public class EquipmentsController : ControllerBase
     {
         private readonly AlkimiaContext _context;
 
-        private readonly ILogger<PermitsController> _logger;
+        private readonly ILogger<EquipmentsController> _logger;
 
-        public EquipmentsController(AlkimiaContext context, ILogger<PermitsController> logger)
+        public EquipmentsController(AlkimiaContext context, ILogger<EquipmentsController> logger)
         {
             _logger = logger;
             _context = context;
         }
 
-        [HttpGet("")]
+        [HttpGet]
         public IEnumerable<Equipment> GetEquipments()
         {
             return _context.Equipments.ToList();

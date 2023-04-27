@@ -23,7 +23,7 @@
             const addEquipment = () => {
                 store.dispatch('addEquipment', {
                     "id": 0,
-                    "collaborator": 1,
+                    "collaborator": 0,
                     "name": "Equipment",
                     "description": "",
                     "serialnumber": "",

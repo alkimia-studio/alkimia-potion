@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WebAPI.Models;
 
@@ -6,7 +7,7 @@ namespace WebAPI.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class PermitsController : Controller
+    public class PermitsController : ControllerBase
     {
         private readonly AlkimiaContext _context;
 
@@ -18,7 +19,7 @@ namespace WebAPI.Controllers
             _context = context;
         }
 
-        [HttpGet("")]
+        [HttpGet]
         public IEnumerable<Permit> GetPermits()
         {
             return _context.Permits.ToList();

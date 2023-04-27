@@ -7,7 +7,7 @@ namespace WebAPI
 {
     public class Startup
     {
-        private IWebHostEnvironment environment;
+        private IWebHostEnvironment? environment;
 
         public Startup(IConfiguration configuration)
         {
@@ -20,7 +20,7 @@ namespace WebAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddCors(); // Make sure you call this previous to AddMvc
-            services.AddMvc(options => options.EnableEndpointRouting = false)
+            _ = services.AddMvc(options => options.EnableEndpointRouting = false)
                 .SetCompatibilityVersion(CompatibilityVersion.Version_3_0)
                 .AddDataAnnotationsLocalization()
                 .ConfigureApiBehaviorOptions(options =>

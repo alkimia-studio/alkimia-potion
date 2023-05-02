@@ -4,6 +4,7 @@ import API  from "./api";
 
 const store = createStore({
     state: {
+        jwttoken: null,
         collaborators: [],
         equipments: [],
         permits: []
@@ -20,6 +21,16 @@ const store = createStore({
         }
     },
     actions: {
+        postLogin({ state }, login) {
+            API.postLogin(login)
+                .then(data => {
+                    state.jwttoken = data.token;
+                    store.dispatch('loadCollaborators');
+                    store.dispatch('loadEquipments');
+                    store.dispatch('loadPermits');
+                })
+                .catch(err => console.log(err))
+        },
         addCollaborator({ state }, collaborator) {
             state.collaborators = [...state.collaborators, collaborator];
         },
@@ -120,6 +131,4 @@ const store = createStore({
 })
 export default store;
 
-store.dispatch('loadCollaborators');
-store.dispatch('loadEquipments');
-store.dispatch('loadPermits');
+store.dispatch('postLogin', { "username": "admin", password: "Alk1m142023!" });

@@ -4,6 +4,36 @@ const _apiUrl = "https://localhost:7237/";
 import axios from 'axios'
 
 export default class API { 
+    static postLogin(login) {
+        var config = {
+            method: 'post',
+            url: _apiUrl + 'Login',
+            headers: { 'Content-Type': 'application/json; charset=utf-8' },
+            data: login
+        };
+
+        const dataPromise = axios(config)
+            .then(function (response) {
+
+                axios.interceptors.request.use(
+                    (config) => {
+                        config.headers.Authorization = `Bearer ${response.data.token}`;
+                        return config;
+                    },
+                    (error) => {
+                        return Promise.reject(error);
+                    }
+                );
+
+                return response.data;
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+
+        return dataPromise
+    }
+
     static getCollaborators() {
         var config = {
             method: 'get',

@@ -1,15 +1,20 @@
 
-import { createStore } from 'framework7/lite';
+import { createStore } from 'framework7';
 import API  from "./api";
 
 const store = createStore({
     state: {
-        jwttoken: null,
+        username: "",
+        password: "",
+        jwttoken: "",
         collaborators: [],
         equipments: [],
         permits: []
     },
     getters: {
+        jwttoken({ state }) {
+            return state.jwttoken;
+        },
         collaborators({ state }) {
             return state.collaborators;
         },
@@ -131,4 +136,4 @@ const store = createStore({
 })
 export default store;
 
-store.dispatch('postLogin', { "username": "admin", password: "Alk1m142023!" });
+//store.dispatch('postLogin', { "username": "admin", password: "Alk1m142023!" });

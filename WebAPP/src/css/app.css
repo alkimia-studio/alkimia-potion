@@ -1,1 +1,168 @@
-/* Your app custom styles here */
+/* Alkimia custom styles here */
+:root {
+    --f7-md-surface: transparent !important;
+}
+
+/* General Style Settings */
+.ios {
+    --f7-font-family: Plus Jakarta Sans, -apple-system, SF Pro Text, SF UI Text, system-ui, Helvetica Neue, Helvetica, Arial, sans-serif;
+    --f7-line-height: 1.4;
+}
+
+.md {
+    --f7-font-family: Plus Jakarta Sans;
+    --f7-line-height: 1.4;
+}
+
+
+/* Component Styles */
+
+.section-left {
+    width:20%;
+    height:100vh;
+    box-sizing:border-box;
+    padding:24px;
+}
+
+.section-right {
+    width: 80%;
+    height: 100vh;
+    box-sizing: border-box;
+    padding: 24px;
+}
+
+.viewport {
+    width: 100vw;
+    height: 100vh;
+}
+
+.row{
+    display:flex;
+    align-items:center;
+    width:100%;
+    box-sizing:border-box;
+}
+
+.row-hover:hover{
+    background-color:#EEEEEE;
+    cursor:pointer;
+}
+
+.row-cell-90 {
+    width: 90%;
+}
+
+.row-cell-80 {
+    width: 80%;
+}
+
+.row-cell-70 {
+    width: 70%;
+}
+
+.row-cell-60 {
+    width: 60%;
+}
+
+.row-cell-50 {
+    width: 50%;
+}
+
+.row-cell-30 {
+    width: 30%;
+}
+
+.row-cell-20 {
+    width: 20%;
+}
+
+.row-cell-10 {
+    width: 10%;
+}
+
+.input-blank input{
+    background-color:transparent !important;
+    border:0 !important;
+}
+.input-blank:after {
+    background-color: transparent !important;
+}
+
+.page-number-item {
+    border-right: solid 1px #EEEEEE;
+}
+
+.page-content-wrapper {
+    max-width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.elevation {
+    box-shadow: 0px 3px 25px 5px rgba(0,0,0,0.1);
+}
+
+.border-radius-3 {
+    border-radius: 6px;
+}
+
+.border-radius-6{
+    border-radius:6px;
+}
+.border-radius-12 {
+    border-radius: 12px;
+}
+
+
+.border-bottom-solid-1 {
+    border-bottom: solid 1px #FFFFFF;
+}
+
+.border-bottom-solid-2{
+    border-bottom:solid 1px #EEEEEE;
+}
+
+.bg-custom-color-1 {
+    background-color: #FFFFFF;
+}
+
+.bg-custom-color-2 {
+    background-color: #F3F3F3;
+}
+
+.custom-color-teal {
+    color: #419DA4;
+}
+
+/* Navigator */
+.navigator-logo {
+    padding: 16px;
+}
+
+.navigator-item-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 3px;
+}
+
+    .navigator-item-icon.active {
+        background-color: #EEEEEE;
+        color: #419DA4;
+    }
+
+.navigator-item-link {
+    color: #999999;
+    height: 50px;
+}
+
+    .navigator-item-link.active {
+        color: #000000;
+        font-weight: 800;
+    }
+
+.search-bar{
+    margin-top:30px;
+}

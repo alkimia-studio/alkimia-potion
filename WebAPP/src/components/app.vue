@@ -30,6 +30,50 @@
                     </svg>
                 </div>
 
+                <!--<f7-list>
+        <f7-list-item>
+            <template #media>
+                <div class="navigator-item-icon active">
+                    <f7-icon f7="square_grid_2x2" />
+                </div>
+            </template>
+            <template #title>
+                <f7-link class="navigator-item-link active" tab-link="#view-home" tab-link-active text="Dashboard"></f7-link>
+            </template>
+        </f7-list-item>
+        <f7-list-item v-if="jwttoken!=''">
+            <template #media>
+                <div class="navigator-item-icon">
+                    <f7-icon f7="square_arrow_left" />
+                </div>
+            </template>
+            <template #title>
+                <f7-link class="navigator-item-link" tab-link="#view-permits" tab-link-active text="Permits"></f7-link>
+            </template>
+        </f7-list-item>
+        <f7-list-item v-if="jwttoken!=''">
+            <template #media>
+                <div class="navigator-item-icon">
+                    <f7-icon f7="device_laptop" />
+                </div>
+            </template>
+            <template #title>
+                <f7-link class="navigator-item-link" tab-link="#view-equipments" tab-link-active text="Assets"></f7-link>
+            </template>
+        </f7-list-item>
+        <f7-list-item v-if="jwttoken!=''">
+            <template #media>
+                <div class="navigator-item-icon">
+                    <f7-icon f7="person_2" />
+                </div>
+            </template>
+            <template #title>
+                <f7-link class="navigator-item-link" tab-link="#view-collaborators" tab-link-active text="Collaborators"></f7-link>
+            </template>
+        </f7-list-item>
+    </f7-list>-->
+
+
                 <f7-list>
                     <f7-list-item>
                         <template #media>
@@ -41,7 +85,7 @@
                             <f7-link class="navigator-item-link active" tab-link="#view-home" tab-link-active text="Dashboard"></f7-link>
                         </template>
                     </f7-list-item>
-                    <f7-list-item v-if="jwttoken!=''">
+                    <f7-list-item>
                         <template #media>
                             <div class="navigator-item-icon">
                                 <f7-icon f7="square_arrow_left" />
@@ -51,7 +95,7 @@
                             <f7-link class="navigator-item-link" tab-link="#view-permits" tab-link-active text="Permits"></f7-link>
                         </template>
                     </f7-list-item>
-                    <f7-list-item v-if="jwttoken!=''">
+                    <f7-list-item>
                         <template #media>
                             <div class="navigator-item-icon">
                                 <f7-icon f7="device_laptop" />
@@ -61,7 +105,7 @@
                             <f7-link class="navigator-item-link" tab-link="#view-equipments" tab-link-active text="Assets"></f7-link>
                         </template>
                     </f7-list-item>
-                    <f7-list-item v-if="jwttoken!=''">
+                    <f7-list-item>
                         <template #media>
                             <div class="navigator-item-icon">
                                 <f7-icon f7="person_2" />
@@ -72,6 +116,9 @@
                         </template>
                     </f7-list-item>
                 </f7-list>
+
+
+
             </div>
             <div class="section-right bg-custom-color-2">
                 <!-- Views/Tabs container -->

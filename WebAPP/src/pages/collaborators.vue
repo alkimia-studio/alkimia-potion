@@ -38,30 +38,30 @@
             </div>
 
             <div class="bg-custom-color-1 border-radius-12 elevation">
-                <div class="row padding border-bottom-solid-2 row-hover" 
-                     
-                     v-for="collaborator in collaborators"
-                     :key="collaborator.id"
-                     @click="">
-                    <div class="row-cell-30 display-flex align-items-center">
-                        <div class="navigator-item-icon margin-right bg-custom-color-2">
-                            <f7-icon f7="person" />
+                    <div class="row padding border-bottom-solid-2 row-hover"
+                         v-for="collaborator in collaborators"
+                         :key="collaborator.id"
+                         @click="collaboratorDetails(collaborator.id)">
+                        <div class="row-cell-30 display-flex align-items-center">
+                            <div class="navigator-item-icon margin-right bg-custom-color-2">
+                                <f7-icon f7="person" />
+                            </div>
+                            <strong>
+                                {{collaborator.name + ' ' + collaborator.surname}}
+                            </strong>
                         </div>
-                        <strong>
-                            {{collaborator.name + ' ' + collaborator.surname}}
-                        </strong>
+                        <div class="row-cell-30">
+                            <f7-link :href="'mailto:'+collaborator.email">
+                                {{collaborator.email}}
+                            </f7-link>
+                        </div>
+                        <div class="row-cell-30">
+                            {{collaborator.tel}}
+                        </div>
+                        <div class="row-cell-10 text-align-right">
+                            <f7-icon f7="chevron_right" color="gray"></f7-icon>
+                        </div>
                     </div>
-                    <div class="row-cell-30">
-                        <f7-link>
-                            {{collaborator.enail}}</f7-link>
-                    </div>
-                    <div class="row-cell-30">
-                        {{collaborator.tel}}
-                    </div>
-                    <div class="row-cell-10 text-align-right">
-                        <f7-icon f7="chevron_right" color="gray"></f7-icon>
-                    </div>
-                </div>
                 <div class="row padding">
                     <div class="row-cell-30">
                         Items per page 
@@ -94,6 +94,21 @@
     import { useStore } from 'framework7-vue';
     import store from '../js/store';
     export default {
+        props: {
+            f7route: Object,
+            f7router: Object,
+        },
+        methods:
+        {
+            collaboratorDetails(id) {
+                this.f7router.navigate('/collaborator/'+id+'/', {
+                    //props: {
+                    //    foo: 'bar',
+                    //    bar: true,
+                    //}
+                })
+            }
+            },
         setup() {
             const collaborators = useStore('collaborators');
             const addCollaborator = () => {

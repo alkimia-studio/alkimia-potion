@@ -11,6 +11,29 @@
                     <li>management of business equipments</li>
                 </ul>
             </f7-block>
+            <f7-button v-if="jwttoken == ''" fill login-screen-open="#my-login-screen">Login Screen</f7-button>
+      
         </f7-block>
 </f7-page>
 </template>
+<script>
+    import { useStore } from 'framework7-vue';
+
+    export default {
+        props: {
+            f7route: Object,
+            f7router: Object,
+        },
+        data() {
+            return {
+                
+            }
+        },
+        setup(props) {
+            const jwttoken = useStore('jwttoken');
+            return {
+                jwttoken
+            };
+        }
+    };
+</script>

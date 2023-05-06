@@ -1,14 +1,20 @@
 
-import { createStore } from 'framework7/lite';
+import { createStore } from 'framework7';
 import API  from "./api";
 
 const store = createStore({
     state: {
+        username: "",
+        password: "",
+        jwttoken: "",
         collaborators: [],
         equipments: [],
         permits: []
     },
     getters: {
+        jwttoken({ state }) {
+            return state.jwttoken;
+        },
         collaborators({ state }) {
             return state.collaborators;
         },
@@ -20,6 +26,16 @@ const store = createStore({
         }
     },
     actions: {
+        postLogin({ state }, login) {
+            API.postLogin(login)
+                .then(data => {
+                    state.jwttoken = data.token;
+                    store.dispatch('loadCollaborators');
+                    store.dispatch('loadEquipments');
+                    store.dispatch('loadPermits');
+                })
+                .catch(err => console.log(err))
+        },
         addCollaborator({ state }, collaborator) {
             state.collaborators = [...state.collaborators, collaborator];
         },
@@ -120,6 +136,4 @@ const store = createStore({
 })
 export default store;
 
-store.dispatch('loadCollaborators');
-store.dispatch('loadEquipments');
-store.dispatch('loadPermits');
+//store.dispatch('postLogin', { "username": "admin", password: "Alk1m142023!" });

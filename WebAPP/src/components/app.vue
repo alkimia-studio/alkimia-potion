@@ -41,7 +41,7 @@
                             <f7-link class="navigator-item-link active" tab-link="#view-home" tab-link-active text="Dashboard"></f7-link>
                         </template>
                     </f7-list-item>
-                    <f7-list-item>
+                    <f7-list-item v-if="jwttoken!=''">
                         <template #media>
                             <div class="navigator-item-icon">
                                 <f7-icon f7="square_arrow_left" />
@@ -51,7 +51,7 @@
                             <f7-link class="navigator-item-link" tab-link="#view-permits" tab-link-active text="Permits"></f7-link>
                         </template>
                     </f7-list-item>
-                    <f7-list-item>
+                    <f7-list-item v-if="jwttoken!=''">
                         <template #media>
                             <div class="navigator-item-icon">
                                 <f7-icon f7="device_laptop" />
@@ -61,7 +61,7 @@
                             <f7-link class="navigator-item-link" tab-link="#view-equipments" tab-link-active text="Assets"></f7-link>
                         </template>
                     </f7-list-item>
-                    <f7-list-item>
+                    <f7-list-item v-if="jwttoken!=''">
                         <template #media>
                             <div class="navigator-item-icon">
                                 <f7-icon f7="person_2" />
@@ -90,6 +90,32 @@
                     <f7-view id="view-permits" name="permits" tab url="/permits/"></f7-view>
 
                 </f7-views>
+
+                <!-- Login Screen -->
+                <f7-login-screen id="my-login-screen">
+            <f7-view>
+                <f7-page login-screen>
+                    <f7-login-screen-title>Login</f7-login-screen-title>
+                    <f7-list form>
+                        <f7-list-input type="text"
+                                       name="username"
+                                       placeholder="Your username"
+                                       v-model:value="username"></f7-list-input>
+                        <f7-list-input type="password"
+                                       name="password"
+                                       placeholder="Your password"
+                                       v-model:value="password"></f7-list-input>
+                    </f7-list>
+                    <f7-list>
+                        <f7-list-button title="Sign In" @click="alertLoginData"></f7-list-button>
+                        <f7-block-footer>
+                            Some text about login information.<br>Click "Sign In" to close Login Screen
+                        </f7-block-footer>
+                    </f7-list>
+                </f7-page>
+            </f7-view>
+        </f7-login-screen>
+
             </div>
         </div>
 
@@ -97,15 +123,13 @@
 </template>
 <script>
     import { ref, onMounted } from 'vue';
-    import { f7, f7ready } from 'framework7-vue';
-
+    import { f7, f7ready, useStore } from 'framework7-vue';
 
     import routes from '../js/routes.js';
     import store from '../js/store';
 
     export default {
         setup() {
-
             // Framework7 Parameters
             const f7params = {
                 name: 'Alkimia Potion', // App name
@@ -125,27 +149,28 @@
                     path: '/service-worker.js',
                 } : {},
             };
+
             // Login screen data
             const username = ref('');
             const password = ref('');
-
             const alertLoginData = () => {
-                f7.dialog.alert('Username: ' + username.value + '<br>Password: ' + password.value, () => {
-                    f7.loginScreen.close();
-                });
+                store.dispatch('postLogin', { "username": username.value, "password": password.value })
+                    .then(() => {
+                        f7.loginScreen.close();
+                    })
             }
+            var jwttoken = useStore(store, 'jwttoken');
             onMounted(() => {
                 f7ready(() => {
 
-
-                    // Call F7 APIs here
                 });
-            });
+            }); 
 
             return {
                 f7params,
                 username,
                 password,
+                jwttoken,
                 alertLoginData
             }
         }

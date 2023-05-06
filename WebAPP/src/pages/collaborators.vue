@@ -62,10 +62,10 @@
                             <f7-icon f7="chevron_right" color="gray"></f7-icon>
                         </div>
                     </div>
-                <div class="row padding">
+                <div class="row padding" v-if="collaborators.length > 0">
                     <div class="row-cell-30">
+                        <strong class="display-inline-block margin-right-half">25</strong> 
                         Items per page 
-                        <strong>25</strong>
                     </div>
                     <div class="row-cell-70 display-flex justify-content-flex-end align-items-center">
                         <div class="page-number-item padding-horizontal padding-vertical-half">

@@ -7,7 +7,7 @@
                     <f7-button back
                                icon-f7="arrow_left"
                                class="display-inline-block"></f7-button>
-                    <h1><span class="subtitle display-inline-block margin-right">Collaborators</span> Collaborator Details</h1>
+                    <h1>Collaborator</h1>
                 </div>
                 <!--<div class="margin-vertical margin-left display-flex justify-content-flex-end">
                     <f7-button fill

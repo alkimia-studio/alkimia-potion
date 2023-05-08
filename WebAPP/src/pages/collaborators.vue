@@ -22,13 +22,14 @@
                         </div>
                         <div style="width:70%">
                             <f7-input type="text"
+                                      v-model:value="searchText"
                                       placeholder="Search for Name, Surname, Email and Phone number"
                                       class="input-blank"
                                       clear-button />
                         </div>
                     </div>
                     <div class="row-cell-20 text-align-right">
-                        <f7-button fill @click="addCollaborator" class="padding-horizontal display-inline-block">
+                        <f7-button fill @click="searchCollaborators(searchText)" class="padding-horizontal display-inline-block">
                             <strong class="display-inline-block">
                                 Search
                             </strong>
@@ -80,13 +81,6 @@
                     </div>
                 </div>
             </div>
-
-            <!--<f7-list strong dividers-ios outline-ios inset-md>
-                <f7-list-item v-for="collaborator in collaborators"
-                              :key="collaborator.id"
-                              :title="collaborator.name + ' ' + collaborator.surname"
-                              :link="`/collaborator/${collaborator.id}/`"></f7-list-item>
-            </f7-list>-->
         </div>
     </f7-page>
 </template>
@@ -98,24 +92,18 @@
             f7route: Object,
             f7router: Object,
         },
-        methods:
-        {
-            collaboratorDetails(id) {
-                this.f7router.navigate('/collaborator/'+id+'/', {
-                    //props: {
-                    //    foo: 'bar',
-                    //    bar: true,
-                    //}
-                })
+        data() {
+            return {
+                searchText: ""
             }
-            },
-        setup() {
+        },
+        setup(props) {
             const collaborators = useStore('collaborators');
             const addCollaborator = () => {
                 store.dispatch('addCollaborator', {
                     "id": 0,
-                    "name": "Mario",
-                    "surname": "Rossi",
+                    "name": "",
+                    "surname": "",
                     "email": "",
                     "emailpersonal": "",
                     "emailpec": "",
@@ -125,11 +113,27 @@
                     "address": "",
                     "iban": "",
                     "note": ""
+                }).then(function () {
+                    props.f7router.navigate('/collaborator/0/', {})
+                })
+                .catch(function (error) {
+                    console.log(error);
                 });
             };
+
+            const collaboratorDetails = (id) => {
+                props.f7router.navigate('/collaborator/' + id + '/', {})
+            };
+
+            const searchCollaborators = (text) => {
+                alert("Search: " + text);
+            };
+
             return {
                 collaborators,
-                addCollaborator
+                addCollaborator,
+                collaboratorDetails,
+                searchCollaborators
             };
         }
     };

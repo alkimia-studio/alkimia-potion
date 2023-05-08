@@ -116,16 +116,7 @@
                         </template>
                     </f7-list-item>
 
-                    <f7-list-item>
-                        <template #media>
-                            <div class="navigator-item-icon">
-                                <f7-icon f7="person_2" />
-                            </div>
-                        </template>
-                        <template #title>
-                            <f7-link class="navigator-item-link" tab-link="#view-collaborators" tab-link-active text="Collaborators"></f7-link>
-                        </template>
-                    </f7-list-item>
+                    
 
                     <f7-button fill @click="Logout">Logout</f7-button>
                 </f7-list>

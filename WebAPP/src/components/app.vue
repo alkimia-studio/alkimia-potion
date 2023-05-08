@@ -31,47 +31,47 @@
                 </div>
 
                 <!--<f7-list>
-        <f7-list-item>
-            <template #media>
-                <div class="navigator-item-icon active">
-                    <f7-icon f7="square_grid_2x2" />
-                </div>
-            </template>
-            <template #title>
-                <f7-link class="navigator-item-link active" tab-link="#view-home" tab-link-active text="Dashboard"></f7-link>
-            </template>
-        </f7-list-item>
-        <f7-list-item v-if="jwttoken!=''">
-            <template #media>
-                <div class="navigator-item-icon">
-                    <f7-icon f7="square_arrow_left" />
-                </div>
-            </template>
-            <template #title>
-                <f7-link class="navigator-item-link" tab-link="#view-permits" tab-link-active text="Permits"></f7-link>
-            </template>
-        </f7-list-item>
-        <f7-list-item v-if="jwttoken!=''">
-            <template #media>
-                <div class="navigator-item-icon">
-                    <f7-icon f7="device_laptop" />
-                </div>
-            </template>
-            <template #title>
-                <f7-link class="navigator-item-link" tab-link="#view-equipments" tab-link-active text="Assets"></f7-link>
-            </template>
-        </f7-list-item>
-        <f7-list-item v-if="jwttoken!=''">
-            <template #media>
-                <div class="navigator-item-icon">
-                    <f7-icon f7="person_2" />
-                </div>
-            </template>
-            <template #title>
-                <f7-link class="navigator-item-link" tab-link="#view-collaborators" tab-link-active text="Collaborators"></f7-link>
-            </template>
-        </f7-list-item>
-    </f7-list>-->
+                    <f7-list-item>
+                        <template #media>
+                            <div class="navigator-item-icon active">
+                                <f7-icon f7="square_grid_2x2" />
+                            </div>
+                        </template>
+                        <template #title>
+                            <f7-link class="navigator-item-link active" tab-link="#view-home" tab-link-active text="Dashboard"></f7-link>
+                        </template>
+                    </f7-list-item>
+                    <f7-list-item v-if="jwttoken!=''">
+                        <template #media>
+                            <div class="navigator-item-icon">
+                                <f7-icon f7="square_arrow_left" />
+                            </div>
+                        </template>
+                        <template #title>
+                            <f7-link class="navigator-item-link" tab-link="#view-permits" tab-link-active text="Permits"></f7-link>
+                        </template>
+                    </f7-list-item>
+                    <f7-list-item v-if="jwttoken!=''">
+                        <template #media>
+                            <div class="navigator-item-icon">
+                                <f7-icon f7="device_laptop" />
+                            </div>
+                        </template>
+                        <template #title>
+                            <f7-link class="navigator-item-link" tab-link="#view-equipments" tab-link-active text="Assets"></f7-link>
+                        </template>
+                    </f7-list-item>
+                    <f7-list-item v-if="jwttoken!=''">
+                        <template #media>
+                            <div class="navigator-item-icon">
+                                <f7-icon f7="person_2" />
+                            </div>
+                        </template>
+                        <template #title>
+                            <f7-link class="navigator-item-link" tab-link="#view-collaborators" tab-link-active text="Collaborators"></f7-link>
+                        </template>
+                    </f7-list-item>
+                </f7-list>-->
 
 
                 <f7-list>
@@ -115,6 +115,19 @@
                             <f7-link class="navigator-item-link" tab-link="#view-collaborators" tab-link-active text="Collaborators"></f7-link>
                         </template>
                     </f7-list-item>
+
+                    <f7-list-item>
+                        <template #media>
+                            <div class="navigator-item-icon">
+                                <f7-icon f7="person_2" />
+                            </div>
+                        </template>
+                        <template #title>
+                            <f7-link class="navigator-item-link" tab-link="#view-collaborators" tab-link-active text="Collaborators"></f7-link>
+                        </template>
+                    </f7-list-item>
+
+                    <f7-button fill @click="Logout">Logout</f7-button>
                 </f7-list>
 
 
@@ -136,10 +149,22 @@
                     <!-- Permits View -->
                     <f7-view id="view-permits" name="permits" tab url="/permits/"></f7-view>
 
+
+
+                    <f7-view id="view-login" name="login" tab url="/login/"></f7-view>
+
                 </f7-views>
 
-                <!-- Login Screen -->
-                <f7-login-screen id="my-login-screen">
+
+
+            </div>
+
+
+
+        </div>
+
+        <!-- Login Screen -->
+        <f7-login-screen id="my-login-screen">
             <f7-view>
                 <f7-page login-screen>
                     <f7-login-screen-title>Login</f7-login-screen-title>
@@ -154,7 +179,7 @@
                                        v-model:value="password"></f7-list-input>
                     </f7-list>
                     <f7-list>
-                        <f7-list-button title="Sign In" @click="alertLoginData"></f7-list-button>
+                        <f7-list-button title="Sign In" @click="Login"></f7-list-button>
                         <f7-block-footer>
                             Some text about login information.<br>Click "Sign In" to close Login Screen
                         </f7-block-footer>
@@ -162,9 +187,6 @@
                 </f7-page>
             </f7-view>
         </f7-login-screen>
-
-            </div>
-        </div>
 
     </f7-app>
 </template>
@@ -174,6 +196,24 @@
 
     import routes from '../js/routes.js';
     import store from '../js/store';
+
+    import { initializeApp } from "firebase/app";
+    import { getAuth, signInWithEmailAndPassword, signOut } from 'firebase/auth'
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyD-NXDLQjaJHmPYYhWaVmmBJtj5mOUO8_Y",
+        authDomain: "f7-auth-d18b0.firebaseapp.com",
+        projectId: "f7-auth-d18b0",
+        storageBucket: "f7-auth-d18b0.appspot.com",
+        messagingSenderId: "475220626734",
+        appId: "1:475220626734:web:7d70ea1cab006e45257ebf"
+    };
+    // Initialize Firebase
+    const appFirebase = initializeApp(firebaseConfig);
+    //initialize firebase auth
+    const auth = getAuth(appFirebase);
+
+
 
     export default {
         setup() {
@@ -190,6 +230,7 @@
                 store: store,
                 // App routes
                 routes: routes,
+                auth,
 
                 // Register service worker (only on production build)
                 serviceWorker: process.env.NODE_ENV === 'production' ? {
@@ -200,25 +241,73 @@
             // Login screen data
             const username = ref('');
             const password = ref('');
-            const alertLoginData = () => {
-                store.dispatch('postLogin', { "username": username.value, "password": password.value })
-                    .then(() => {
-                        f7.loginScreen.close();
-                    })
+            const Login = () => {
+                try {
+                    signInWithEmailAndPassword(auth, username.value, password.value)
+                        .then(response => {
+                            if (response) {
+                                const element = document.querySelector("#my-login-screen");
+                                f7.loginScreen.close(element);
+                            } else {
+                                alert('login failed')
+                            }
+                        })
+                        .catch(err => alert(err))
+
+                }
+
+                catch (err) {
+                    alert('login failed' + err.message)
+                    error.value = err.message
+                }
             }
+
+            const Logout = async () => {
+                try {
+
+                    auth.signOut()
+                        .then(response => {
+                       
+                                const element = document.querySelector("#my-login-screen");
+                                f7.loginScreen.open(element);
+                            
+                        })
+                        .catch(err => alert(err))
+                }
+                catch (err) {
+                    alert('logout failed')
+                }
+            }
+
+
+
             var jwttoken = useStore(store, 'jwttoken');
             onMounted(() => {
                 f7ready(() => {
 
+                    auth.onAuthStateChanged(user => {
+                        if (user) {
+                            // User is signed in, see docs for a list of available properties
+                            // https://firebase.google.com/docs/reference/js/firebase.User
+                            const uid = user.uid;
+
+                            // ...
+                        } else {
+                            const element = document.querySelector("#my-login-screen");
+                            f7.loginScreen.open(element);
+                        }
+                    });
+
                 });
-            }); 
+            });
 
             return {
                 f7params,
                 username,
                 password,
                 jwttoken,
-                alertLoginData
+                Login,
+                Logout
             }
         }
     }

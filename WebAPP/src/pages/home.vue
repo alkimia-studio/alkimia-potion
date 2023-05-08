@@ -11,7 +11,7 @@
                     <li>management of business equipments</li>
                 </ul>
             </f7-block>
-            <f7-button v-if="jwttoken == ''" fill login-screen-open="#my-login-screen">Login Screen</f7-button>
+           
       
         </f7-block>
 </f7-page>

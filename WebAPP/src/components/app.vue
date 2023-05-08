@@ -151,7 +151,7 @@
 
 
 
-                    <f7-view id="view-login" name="login" tab url="/login/"></f7-view>
+                    
 
                 </f7-views>
 
@@ -248,6 +248,9 @@
                             if (response) {
                                 const element = document.querySelector("#my-login-screen");
                                 f7.loginScreen.close(element);
+
+                                store.dispatch('postLogin', { "username": username.value, password: password.value });
+
                             } else {
                                 alert('login failed')
                             }

@@ -136,4 +136,3 @@ const store = createStore({
 })
 export default store;
 
-//store.dispatch('postLogin', { "username": "admin", password: "Alk1m142023!" });

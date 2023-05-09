@@ -115,10 +115,22 @@
             });
 
             const postPermit = (permit) => {
-                if (permit.id == 0)
-                    store.dispatch('postPermit', permit);
-                else
-                    store.dispatch('putPermit', permit);
+                if (permit.id == 0) {
+                    store.dispatch('postPermit', permit).then(function () {
+                        props.f7router.navigate('/Permits/');
+                    })
+                        .catch(function (error) {
+                            console.log(error);
+                        });
+                }
+                else {
+                    store.dispatch('putPermit', permit).then(function () {
+                        props.f7router.navigate('/Permits/');
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+                }
             };
 
             const deletePermit = (permitId) => {

@@ -125,10 +125,22 @@
             });
 
             const postEquipment = (equipment) => {
-                if (equipment.id == 0)
-                    store.dispatch('postEquipment', equipment);
-                else
-                    store.dispatch('putEquipment', equipment);
+                if (equipment.id == 0) {
+                    store.dispatch('postEquipment', equipment).then(function () {
+                        props.f7router.navigate('/Equipments/');
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+                }
+                else {
+                    store.dispatch('putEquipment', equipment).then(function () {
+                        props.f7router.navigate('/Equipments/');
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+                }
             };
 
             const deleteEquipment = (equipmentId) => {

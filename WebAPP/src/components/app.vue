@@ -30,50 +30,6 @@
                     </svg>
                 </div>
 
-                <!--<f7-list>
-                    <f7-list-item>
-                        <template #media>
-                            <div class="navigator-item-icon active">
-                                <f7-icon f7="square_grid_2x2" />
-                            </div>
-                        </template>
-                        <template #title>
-                            <f7-link class="navigator-item-link active" tab-link="#view-home" tab-link-active text="Dashboard"></f7-link>
-                        </template>
-                    </f7-list-item>
-                    <f7-list-item v-if="jwttoken!=''">
-                        <template #media>
-                            <div class="navigator-item-icon">
-                                <f7-icon f7="square_arrow_left" />
-                            </div>
-                        </template>
-                        <template #title>
-                            <f7-link class="navigator-item-link" tab-link="#view-permits" tab-link-active text="Permits"></f7-link>
-                        </template>
-                    </f7-list-item>
-                    <f7-list-item v-if="jwttoken!=''">
-                        <template #media>
-                            <div class="navigator-item-icon">
-                                <f7-icon f7="device_laptop" />
-                            </div>
-                        </template>
-                        <template #title>
-                            <f7-link class="navigator-item-link" tab-link="#view-equipments" tab-link-active text="Assets"></f7-link>
-                        </template>
-                    </f7-list-item>
-                    <f7-list-item v-if="jwttoken!=''">
-                        <template #media>
-                            <div class="navigator-item-icon">
-                                <f7-icon f7="person_2" />
-                            </div>
-                        </template>
-                        <template #title>
-                            <f7-link class="navigator-item-link" tab-link="#view-collaborators" tab-link-active text="Collaborators"></f7-link>
-                        </template>
-                    </f7-list-item>
-                </f7-list>-->
-
-
                 <f7-list>
                     <f7-list-item>
                         <template #media>
@@ -116,13 +72,8 @@
                         </template>
                     </f7-list-item>
 
-                    
-
                     <f7-button fill @click="Logout">Logout</f7-button>
                 </f7-list>
-
-
-
             </div>
             <div class="section-right bg-custom-color-2">
                 <!-- Views/Tabs container -->
@@ -139,19 +90,8 @@
 
                     <!-- Permits View -->
                     <f7-view id="view-permits" name="permits" tab url="/permits/"></f7-view>
-
-
-
-                    
-
                 </f7-views>
-
-
-
             </div>
-
-
-
         </div>
 
         <!-- Login Screen -->
@@ -240,16 +180,13 @@
                                 const element = document.querySelector("#my-login-screen");
                                 f7.loginScreen.close(element);
 
-                                store.dispatch('postLogin', { "username": username.value, password: password.value });
+                                store.dispatch('postLogin', { "username": username.value, "password": password.value });
 
                             } else {
                                 alert('login failed')
                             }
-                        })
-                        .catch(err => alert(err))
-
+                        }).catch(err => alert(err));
                 }
-
                 catch (err) {
                     alert('login failed' + err.message)
                     error.value = err.message
@@ -258,13 +195,10 @@
 
             const Logout = async () => {
                 try {
-
                     auth.signOut()
-                        .then(response => {
-                       
-                                const element = document.querySelector("#my-login-screen");
-                                f7.loginScreen.open(element);
-                            
+                        .then(response => {                   
+                            const element = document.querySelector("#my-login-screen");
+                            f7.loginScreen.open(element);  
                         })
                         .catch(err => alert(err))
                 }
@@ -273,19 +207,18 @@
                 }
             }
 
-
-
             var jwttoken = useStore(store, 'jwttoken');
             onMounted(() => {
                 f7ready(() => {
-
                     auth.onAuthStateChanged(user => {
                         if (user) {
                             // User is signed in, see docs for a list of available properties
-                            // https://firebase.google.com/docs/reference/js/firebase.User
+                            // https://firebase.google.com/docs/reference/js/auth.user
                             const uid = user.uid;
-
                             // ...
+
+                            //TODO
+                            store.dispatch('postLogin', { "username": "admin@alkimia.studio", "password": "Alk1m142023!" });
                         } else {
                             const element = document.querySelector("#my-login-screen");
                             f7.loginScreen.open(element);

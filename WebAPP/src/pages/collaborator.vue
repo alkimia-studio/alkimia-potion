@@ -131,10 +131,22 @@
                 }
             });
             const postCollaborator = (collaborator) => {
-                if(collaborator.id == 0)
-                    store.dispatch('postCollaborator', collaborator);
-                else
-                    store.dispatch('putCollaborator', collaborator);
+                if (collaborator.id == 0) {
+                    store.dispatch('postCollaborator', collaborator).then(function () {
+                        props.f7router.navigate('/Collaborators/');
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+                }
+                else {
+                    store.dispatch('putCollaborator', collaborator).then(function () {
+                        props.f7router.navigate('/Collaborators/');
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+                }
             };
             const deleteCollaborator = (collaboratorId) => {
                 if (confirm('Are you sure?')) {

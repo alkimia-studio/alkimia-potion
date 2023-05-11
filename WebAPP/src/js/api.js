@@ -3,7 +3,30 @@ const _apiUrl = "https://api.alkimia.cloud/";
 
 import axios from 'axios'
 
-export default class API { 
+export default class API {
+
+    static updateToken(token) {
+
+        return new Promise(() => {
+            return axios.interceptors.request.use(
+                (config) => {
+                    config.headers.Authorization = `Bearer ${token}`;
+                    return config;
+                    
+                },
+                (error) => {
+                    alert(error)
+                    return Promise.reject(error);
+                }
+            );
+            
+        })
+
+        
+         
+    }
+
+
     static postLogin(login) {
         var config = {
             method: 'post',
@@ -46,7 +69,9 @@ export default class API {
                 return response.data;
             })
             .catch(function (error) {
+
                 console.log(error);
+                // console.log(error);
             });
 
         return dataPromise

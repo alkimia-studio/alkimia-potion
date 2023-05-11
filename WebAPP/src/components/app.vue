@@ -92,8 +92,8 @@
                     <f7-view id="view-permits" name="permits" tab url="/permits/"></f7-view>
                 </f7-views>
             </div>
+     
         </div>
-
         <!-- Login Screen -->
         <f7-login-screen id="my-login-screen">
             <f7-view>
@@ -119,18 +119,29 @@
             </f7-view>
         </f7-login-screen>
 
+
+        <f7-popup :opened="(error != null)? true : false" class="demo-popup">
+            <f7-page>
+                <f7-navbar title="Popup Title">
+                    <f7-nav-right>
+                        <f7-link popup-close>Close</f7-link>
+                    </f7-nav-right>
+                </f7-navbar>
+                <f7-block>
+                    {{error}}
+                </f7-block>
+            </f7-page>
+        </f7-popup>
     </f7-app>
 </template>
 <script>
     import { ref, onMounted } from 'vue';
     import { f7, f7ready, useStore } from 'framework7-vue';
-
     import routes from '../js/routes.js';
     import store from '../js/store';
-
+    import API from "../js/api";
     import { initializeApp } from "firebase/app";
     import { getAuth, signInWithEmailAndPassword, signOut } from 'firebase/auth'
-
     const firebaseConfig = {
         apiKey: "AIzaSyD-NXDLQjaJHmPYYhWaVmmBJtj5mOUO8_Y",
         authDomain: "f7-auth-d18b0.firebaseapp.com",
@@ -143,9 +154,6 @@
     const appFirebase = initializeApp(firebaseConfig);
     //initialize firebase auth
     const auth = getAuth(appFirebase);
-
-
-
     export default {
         setup() {
             // Framework7 Parameters
@@ -156,22 +164,21 @@
                     // specify primary color theme
                     primary: '#419DA4'
                 },
-
                 // App store
                 store: store,
                 // App routes
                 routes: routes,
                 auth,
-
                 // Register service worker (only on production build)
                 serviceWorker: process.env.NODE_ENV === 'production' ? {
                     path: '/service-worker.js',
                 } : {},
             };
-
             // Login screen data
             const username = ref('');
             const password = ref('');
+            const error = useStore(store, 'lastError');
+            const isOpened = error != null;
             const Login = () => {
                 try {
                     signInWithEmailAndPassword(auth, username.value, password.value)
@@ -179,9 +186,7 @@
                             if (response) {
                                 const element = document.querySelector("#my-login-screen");
                                 f7.loginScreen.close(element);
-
                                 store.dispatch('postLogin', { "username": username.value, "password": password.value });
-
                             } else {
                                 alert('login failed')
                             }
@@ -192,13 +197,12 @@
                     error.value = err.message
                 }
             }
-
             const Logout = async () => {
                 try {
                     auth.signOut()
-                        .then(response => {                   
+                        .then(response => {
                             const element = document.querySelector("#my-login-screen");
-                            f7.loginScreen.open(element);  
+                            f7.loginScreen.open(element);
                         })
                         .catch(err => alert(err))
                 }
@@ -206,35 +210,39 @@
                     alert('logout failed')
                 }
             }
-
-            var jwttoken = useStore(store, 'jwttoken');
             onMounted(() => {
                 f7ready(() => {
                     auth.onAuthStateChanged(user => {
+
+                        
+
+
                         if (user) {
                             // User is signed in, see docs for a list of available properties
                             // https://firebase.google.com/docs/reference/js/auth.user
-                            const uid = user.uid;
-                            // ...
-
-                            //TODO
-                            store.dispatch('postLogin', { "username": "admin@alkimia.studio", "password": "Alk1m142023!" });
+                            var jwttoken = useStore(store, 'jwttoken');
+                            // l'utente e'' autenticato su firebase ma non sulle API'
+                            if (jwttoken.value == null || jwttoken.value == "") {
+                                var savedToken = localStorage.getItem('authToken');
+                                //API.updateToken(savedToken);
+                                debugger;
+                                store.dispatch("initData", savedToken)
+                            }
                         } else {
                             const element = document.querySelector("#my-login-screen");
                             f7.loginScreen.open(element);
                         }
                     });
-
                 });
             });
-
             return {
                 f7params,
                 username,
                 password,
-                jwttoken,
                 Login,
-                Logout
+                Logout,
+                error,
+                isOpened
             }
         }
     }

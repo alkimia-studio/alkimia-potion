@@ -1,6 +1,6 @@
 
 import { createStore } from 'framework7';
-import API  from "./api";
+import API from "./api";
 
 const store = createStore({
     state: {
@@ -9,7 +9,8 @@ const store = createStore({
         jwttoken: "",
         collaborators: [],
         equipments: [],
-        permits: []
+        permits: [],
+        error: null,
     },
     getters: {
         jwttoken({ state }) {
@@ -23,13 +24,30 @@ const store = createStore({
         },
         permits({ state }) {
             return state.permits;
+        },
+        lastError({ state }) {
+            return state.error;
         }
     },
     actions: {
+        initData({ state }, token) {
+            debugger;
+            API.updateToken(token).then(_ => {
+                state.jwttoken = token;
+
+                localStorage.setItem('authToken', token);
+                store.dispatch('loadCollaborators');
+                store.dispatch('loadEquipments');
+                store.dispatch('loadPermits');
+            });
+            
+
+        },
         postLogin({ state }, login) {
             API.postLogin(login)
                 .then(data => {
                     state.jwttoken = data.token;
+                    localStorage.setItem('authToken', data.token);
                     store.dispatch('loadCollaborators');
                     store.dispatch('loadEquipments');
                     store.dispatch('loadPermits');
@@ -49,7 +67,7 @@ const store = createStore({
         putCollaborator({ state }, collaborator) {
             API.putCollaborator(collaborator)
                 .then(data => {
-                    
+
                 })
                 .catch(err => console.log(err))
         },
@@ -58,8 +76,10 @@ const store = createStore({
                 .then(data => {
                     state.collaborators = data;
                 })
-                .catch(err => console.log(err))
-
+                .catch(err => {
+                    debugger;
+                    state.error = err;
+                });
         },
         deleteCollaborator({ state }, collaboratorId) {
             API.deleteCollaborator(collaboratorId)
@@ -90,7 +110,9 @@ const store = createStore({
                 .then(data => {
                     state.equipments = data;
                 })
-                .catch(err => console.log(err))
+                .catch(err => {
+                    state.error = err;
+                });
 
         },
         deleteEquipment({ state }, equipmentId) {
@@ -122,7 +144,9 @@ const store = createStore({
                 .then(data => {
                     state.permits = data;
                 })
-                .catch(err => console.log(err))
+                .catch(err => {
+                    state.error = err;
+                });
 
         },
         deletePermit({ state }, permitId) {

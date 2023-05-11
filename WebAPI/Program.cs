@@ -14,9 +14,11 @@ public class Program
             WebHost.CreateDefaultBuilder(args)
             .ConfigureServices((hostContext, services) =>
             {
-                services.AddDbContext<AlkimiaContext>(options =>
-                    options.UseSqlServer(hostContext.Configuration.GetConnectionString("DefaultConnection")));
+ 
+                _ = services.AddDbContext<AlkimiaContext>(options =>
+                    options.UseSqlite(hostContext.Configuration.GetConnectionString("DefaultConnection").Replace("{AppDir}", AppDomain.CurrentDomain.BaseDirectory)));
                 services.AddControllers();
+
             })
             .UseStartup<Startup>()
             .ConfigureLogging(logging =>

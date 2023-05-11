@@ -1,4 +1,4 @@
-// const _apiUrl = "https://localhost:7237/";
+//const _apiUrl = "https://localhost:7237/";
 const _apiUrl = "https://api.alkimia.cloud/";
 
 import axios from 'axios'
@@ -125,6 +125,7 @@ export default class API {
             })
             .catch(function (error) {
                 console.log(error);
+                return Promise.reject(error);
             });
 
         return dataPromise
@@ -199,6 +200,7 @@ export default class API {
             })
             .catch(function (error) {
                 console.log(error);
+                return Promise.reject(error);
             });
 
         return dataPromise
@@ -273,6 +275,7 @@ export default class API {
             })
             .catch(function (error) {
                 console.log(error);
+                return Promise.reject(error);
             });
 
         return dataPromise

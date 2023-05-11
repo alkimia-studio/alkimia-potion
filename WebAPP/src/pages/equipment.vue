@@ -145,7 +145,13 @@
 
             const deleteEquipment = (equipmentId) => {
                 if (confirm('Are you sure?')) {
-                    store.dispatch('deleteEquipment', equipmentId);
+                    store.dispatch('deleteEquipment', equipmentId).then(function () {
+                        alert("Done!");
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                        alert("Fail!");
+                    });
                     props.f7router.navigate('/Equipments/');
                 }
             };

@@ -150,10 +150,17 @@
             };
             const deleteCollaborator = (collaboratorId) => {
                 if (confirm('Are you sure?')) {
-                    store.dispatch('deleteCollaborator', collaboratorId);
+                    store.dispatch('deleteCollaborator', collaboratorId)
+                        .then(function () {
+                        alert("Done!");
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                        alert("Fail!");
+                    });
                     props.f7router.navigate('/Collaborators/');
                 }
-            };
+            }
             return {
                 collaborator: currentCollaborator,
                 postCollaborator,

@@ -62,11 +62,14 @@ const store = createStore({
 
         },
         deleteCollaborator({ state }, collaboratorId) {
-            API.deleteCollaborator(collaboratorId)
+            return API.deleteCollaborator(collaboratorId)
                 .then(data => {
                     store.dispatch('loadCollaborators');
                 })
-                .catch(err => console.log(err))
+                .catch(err => {
+                    console.log(err);
+                    return Promise.reject(err);
+                });
         },
         addEquipment({ state }, equipment) {
             state.equipments = [...state.equipments, equipment];
@@ -94,11 +97,14 @@ const store = createStore({
 
         },
         deleteEquipment({ state }, equipmentId) {
-            API.deleteEquipment(equipmentId)
+            return API.deleteEquipment(equipmentId)
                 .then(data => {
                     store.dispatch('loadEquipments');
                 })
-                .catch(err => console.log(err))
+                .catch(err => {
+                    console.log(err);
+                    return Promise.reject(err);
+                });
         },
         addPermit({ state }, permit) {
             state.permits = [...state.permits, permit];
@@ -126,11 +132,14 @@ const store = createStore({
 
         },
         deletePermit({ state }, permitId) {
-            API.deletePermit(permitId)
+            return API.deletePermit(permitId)
                 .then(data => {
                     store.dispatch('loadPermits');
                 })
-                .catch(err => console.log(err))
+                .catch(err => {
+                    console.log(err);
+                    return Promise.reject(err);
+                });
         }
     },
 })

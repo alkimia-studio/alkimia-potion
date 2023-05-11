@@ -135,7 +135,13 @@
 
             const deletePermit = (permitId) => {
                 if (confirm('Are you sure?')) {
-                    store.dispatch('deletePermit', permitId);
+                    store.dispatch('deletePermit', permitId).then(function () {
+                        alert("Done!");
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                        alert("Fail!");
+                    });
                     props.f7router.navigate('/Permits/');
                 }
             };

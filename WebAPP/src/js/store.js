@@ -32,14 +32,14 @@ const store = createStore({
     actions: {
         initData({ state }, token) {
             debugger;
-            API.updateToken(token).then(_ => {
+            API.updateToken(token);
                 state.jwttoken = token;
 
                 localStorage.setItem('authToken', token);
                 store.dispatch('loadCollaborators');
                 store.dispatch('loadEquipments');
                 store.dispatch('loadPermits');
-            });
+           
             
 
         },

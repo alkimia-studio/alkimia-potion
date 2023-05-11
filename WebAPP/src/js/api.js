@@ -7,23 +7,20 @@ export default class API {
 
     static updateToken(token) {
 
-        return new Promise(() => {
-            return axios.interceptors.request.use(
+        
+            axios.interceptors.request.use(
                 (config) => {
                     config.headers.Authorization = `Bearer ${token}`;
                     return config;
                     
                 },
                 (error) => {
-                    alert(error)
-                    return Promise.reject(error);
+                    console.log(error);
+                    
                 }
             );
             
-        })
-
         
-         
     }
 
 

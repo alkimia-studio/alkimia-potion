@@ -124,7 +124,7 @@
             <f7-page>
                 <f7-navbar title="Popup Title">
                     <f7-nav-right>
-                        <f7-link popup-close>Close</f7-link>
+                        <f7-link popup-close @click="redirect">Close</f7-link>
                     </f7-nav-right>
                 </f7-navbar>
                 <f7-block>
@@ -187,7 +187,8 @@
                                 const element = document.querySelector("#my-login-screen");
                                 f7.loginScreen.close(element);
                                 store.dispatch('postLogin', { "username": username.value, "password": password.value });
-                            } else {
+                            }
+                            else {
                                 alert('login failed')
                             }
                         }).catch(err => alert(err));
@@ -210,13 +211,20 @@
                     alert('logout failed')
                 }
             }
+            const redirect = () => {
+                debugger;
+                if (error && error.value && error.value.response && error.value.response.status == "401") {
+                    store.dispatch("setError", null);
+                    const element = document.querySelector("#my-login-screen");
+                    f7.loginScreen.open(element);
+                }
+                    
+                    
+                
+            }
             onMounted(() => {
                 f7ready(() => {
                     auth.onAuthStateChanged(user => {
-
-                        
-
-
                         if (user) {
                             // User is signed in, see docs for a list of available properties
                             // https://firebase.google.com/docs/reference/js/auth.user
@@ -224,8 +232,6 @@
                             // l'utente e'' autenticato su firebase ma non sulle API'
                             if (jwttoken.value == null || jwttoken.value == "") {
                                 var savedToken = localStorage.getItem('authToken');
-                                //API.updateToken(savedToken);
-                                debugger;
                                 store.dispatch("initData", savedToken)
                             }
                         } else {
@@ -242,7 +248,8 @@
                 Login,
                 Logout,
                 error,
-                isOpened
+                isOpened,
+                redirect
             }
         }
     }

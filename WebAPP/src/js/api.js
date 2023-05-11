@@ -66,9 +66,8 @@ export default class API {
                 return response.data;
             })
             .catch(function (error) {
-
                 console.log(error);
-                // console.log(error);
+                return Promise.reject(error);
             });
 
         return dataPromise
@@ -144,6 +143,7 @@ export default class API {
             })
             .catch(function (error) {
                 console.log(error);
+                return Promise.reject(error);
             });
 
         return dataPromise
@@ -219,6 +219,7 @@ export default class API {
             })
             .catch(function (error) {
                 console.log(error);
+                return Promise.reject(error);
             });
 
         return dataPromise

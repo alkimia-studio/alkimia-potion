@@ -39,9 +39,6 @@ const store = createStore({
                 store.dispatch('loadCollaborators');
                 store.dispatch('loadEquipments');
                 store.dispatch('loadPermits');
-           
-            
-
         },
         postLogin({ state }, login) {
             API.postLogin(login)
@@ -77,7 +74,6 @@ const store = createStore({
                     state.collaborators = data;
                 })
                 .catch(err => {
-                    debugger;
                     state.error = err;
                 });
         },
@@ -164,7 +160,10 @@ const store = createStore({
                     console.log(err);
                     return Promise.reject(err);
                 });
-        }
+        },
+        setError({ state }, val) {
+            state.error = val;
+        },
     },
 })
 export default store;

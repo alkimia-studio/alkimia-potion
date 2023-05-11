@@ -1,29 +1,19 @@
-//const _apiUrl = "https://localhost:7237/";
-const _apiUrl = "https://api.alkimia.cloud/";
+const _apiUrl = "https://localhost:7237/";
+//const _apiUrl = "https://api.alkimia.cloud/";
 
 import axios from 'axios'
 
-export default class API {
-
-    static updateToken(token) {
-
-        
-            axios.interceptors.request.use(
-                (config) => {
-                    config.headers.Authorization = `Bearer ${token}`;
-                    return config;
-                    
-                },
-                (error) => {
-                    console.log(error);
-                    
-                }
-            );
-            
-        
+axios.interceptors.request.use(
+    (config) => {
+        config.headers.Authorization = `Bearer ${localStorage.getItem('authToken') }`;
+        return config;
+    },
+    (error) => {
+        console.log(error);
     }
+);
 
-
+export default class API {
     static postLogin(login) {
         var config = {
             method: 'post',
@@ -34,17 +24,6 @@ export default class API {
 
         const dataPromise = axios(config)
             .then(function (response) {
-
-                axios.interceptors.request.use(
-                    (config) => {
-                        config.headers.Authorization = `Bearer ${response.data.token}`;
-                        return config;
-                    },
-                    (error) => {
-                        return Promise.reject(error);
-                    }
-                );
-
                 return response.data;
             })
             .catch(function (error) {

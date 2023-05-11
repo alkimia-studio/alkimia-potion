@@ -202,6 +202,8 @@
                 try {
                     auth.signOut()
                         .then(response => {
+                            store.dispatch("resetJWTToken");
+
                             const element = document.querySelector("#my-login-screen");
                             f7.loginScreen.open(element);
                         })
@@ -212,28 +214,23 @@
                 }
             }
             const redirect = () => {
-                debugger;
                 if (error && error.value && error.value.response && error.value.response.status == "401") {
                     store.dispatch("setError", null);
                     const element = document.querySelector("#my-login-screen");
                     f7.loginScreen.open(element);
                 }
-                    
-                    
-                
             }
             onMounted(() => {
                 f7ready(() => {
+                    var savedToken = localStorage.getItem('authToken');
+                    if (savedToken != "") {
+                        store.dispatch("initData");
+                    }
                     auth.onAuthStateChanged(user => {
                         if (user) {
                             // User is signed in, see docs for a list of available properties
                             // https://firebase.google.com/docs/reference/js/auth.user
-                            var jwttoken = useStore(store, 'jwttoken');
-                            // l'utente e'' autenticato su firebase ma non sulle API'
-                            if (jwttoken.value == null || jwttoken.value == "") {
-                                var savedToken = localStorage.getItem('authToken');
-                                store.dispatch("initData", savedToken)
-                            }
+                            
                         } else {
                             const element = document.querySelector("#my-login-screen");
                             f7.loginScreen.open(element);

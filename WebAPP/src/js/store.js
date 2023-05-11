@@ -30,24 +30,21 @@ const store = createStore({
         }
     },
     actions: {
-        initData({ state }, token) {
-            debugger;
-            API.updateToken(token);
-                state.jwttoken = token;
-
-                localStorage.setItem('authToken', token);
-                store.dispatch('loadCollaborators');
-                store.dispatch('loadEquipments');
-                store.dispatch('loadPermits');
+        initData({ state }) {    
+            store.dispatch('loadCollaborators');
+            store.dispatch('loadEquipments');
+            store.dispatch('loadPermits');
+        },
+        resetJWTToken({ state }) {
+            state.jwttoken = "";
+            localStorage.setItem('authToken', "");
         },
         postLogin({ state }, login) {
             API.postLogin(login)
                 .then(data => {
                     state.jwttoken = data.token;
                     localStorage.setItem('authToken', data.token);
-                    store.dispatch('loadCollaborators');
-                    store.dispatch('loadEquipments');
-                    store.dispatch('loadPermits');
+                    store.dispatch('initData');
                 })
                 .catch(err => console.log(err))
         },

@@ -6,17 +6,17 @@ public partial class Permit
 
     public long? Collaborator { get; set; }
 
-    public byte[] From { get; set; } = null!;
+    public DateTime From { get; set; }
 
-    public byte[] To { get; set; } = null!;
+    public DateTime To { get; set; }
 
-    public byte[]? Allday { get; set; }
+    public bool? Allday { get; set; }
 
-    public byte[] Timestamp { get; set; } = null!;
+    public DateTime Timestamp { get; set; }
 
-    public string? Note { get; set; }
+    public string Note { get; set; }
 
-    public byte[]? Torecover { get; set; }
+    public bool? Torecover { get; set; }
 
     public string Type { get; set; } = null!;
 

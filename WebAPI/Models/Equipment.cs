@@ -12,7 +12,7 @@ public partial class Equipment
 
     public string? Serialnumber { get; set; }
 
-    public byte[]? Purchasedate { get; set; }
+    public DateTime? Purchasedate { get; set; }
 
     public long Type { get; set; }
 

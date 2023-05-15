@@ -2,9 +2,9 @@
 
 public partial class Equipment
 {
-    public int Id { get; set; }
+    public long Id { get; set; }
 
-    public int? Collaborator { get; set; }
+    public long? Collaborator { get; set; }
 
     public string Name { get; set; } = null!;
 
@@ -12,9 +12,9 @@ public partial class Equipment
 
     public string? Serialnumber { get; set; }
 
-    public DateTime? Purchasedate { get; set; }
+    public byte[]? Purchasedate { get; set; }
 
-    public int Type { get; set; }
+    public long Type { get; set; }
 
     public double? Price { get; set; }
 
@@ -23,4 +23,6 @@ public partial class Equipment
     public string? Note { get; set; }
 
     public virtual Collaborator? CollaboratorNavigation { get; set; }
+
+    public virtual EquipmentType TypeNavigation { get; set; } = null!;
 }

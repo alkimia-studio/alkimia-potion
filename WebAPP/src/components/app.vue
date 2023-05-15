@@ -139,9 +139,8 @@
     import { f7, f7ready, useStore } from 'framework7-vue';
     import routes from '../js/routes.js';
     import store from '../js/store';
-    import API from "../js/api";
     import { initializeApp } from "firebase/app";
-    import { getAuth, signInWithEmailAndPassword, signOut } from 'firebase/auth'
+    import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'
     const firebaseConfig = {
         apiKey: "AIzaSyD-NXDLQjaJHmPYYhWaVmmBJtj5mOUO8_Y",
         authDomain: "f7-auth-d18b0.firebaseapp.com",
@@ -154,6 +153,10 @@
     const appFirebase = initializeApp(firebaseConfig);
     //initialize firebase auth
     const auth = getAuth(appFirebase);
+    //Import moment
+    import momentLibrary from 'moment';
+    import 'moment/locale/it'; 
+    const moment = momentLibrary; // Add Moment.js as property of Framework7
     export default {
         setup() {
             // Framework7 Parameters
@@ -168,7 +171,7 @@
                 store: store,
                 // App routes
                 routes: routes,
-                auth,
+                moment: moment,
                 // Register service worker (only on production build)
                 serviceWorker: process.env.NODE_ENV === 'production' ? {
                     path: '/service-worker.js',

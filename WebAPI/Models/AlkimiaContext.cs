@@ -21,7 +21,7 @@ public partial class AlkimiaContext : DbContext
 
     public virtual DbSet<Permit> Permits { get; set; }
 
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {  }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

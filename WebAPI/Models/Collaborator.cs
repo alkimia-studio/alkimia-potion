@@ -1,8 +1,11 @@
-﻿namespace WebAPI.Models;
+﻿using System;
+using System.Collections.Generic;
+
+namespace WebAPI.Models;
 
 public partial class Collaborator
 {
-    public int Id { get; set; }
+    public long Id { get; set; }
 
     public string Name { get; set; } = null!;
 

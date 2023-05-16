@@ -219,6 +219,8 @@
             const redirect = () => {
                 if (error && error.value && error.value.response && error.value.response.status == "401") {
                     store.dispatch("setError", null);
+                    error = null;
+
                     const element = document.querySelector("#my-login-screen");
                     f7.loginScreen.open(element);
                 }

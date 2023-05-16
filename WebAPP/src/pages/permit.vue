@@ -58,12 +58,12 @@
                                 <f7-icon f7="person_2"></f7-icon>
                             </template>
                         </f7-list-input>
-                        <f7-list-input type="date" :disabled="!editMode" v-model:value="permit.from" label="From">
+                        <f7-list-input type="datetime-local" :disabled="!editMode" v-model:value="permit.from" label="From">
                             <template #media>
                                 <f7-icon f7="house"></f7-icon>
                             </template>
                         </f7-list-input>
-                        <f7-list-input type="date" :disabled="!editMode" v-model:value="permit.to" label="To">
+                        <f7-list-input type="datetime-local" :disabled="!editMode" v-model:value="permit.to" label="To">
                             <template #media>
                                 <f7-icon f7="doc_text_viewfinder"></f7-icon>
                             </template>

@@ -72,7 +72,7 @@
                                 <f7-icon f7="doc_person"></f7-icon>
                             </template>
                         </f7-list-input>
-                        <f7-list-input input type="date" :disabled="!editMode" v-model:value="equipment.purchasedate" label="Purchase date">
+                        <f7-list-input input type="datetime-local" :disabled="!editMode" v-model:value="equipment.purchasedate" label="Purchase date">
                             <template #media>
                                 <f7-icon f7="qrcode"></f7-icon>
                             </template>

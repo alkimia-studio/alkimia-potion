@@ -14,7 +14,7 @@ public partial class Permit
 
     public DateTime Timestamp { get; set; }
 
-    public string Note { get; set; }
+    public string? Note { get; set; }
 
     public bool? Torecover { get; set; }
 

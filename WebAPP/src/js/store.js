@@ -108,7 +108,6 @@ const store = createStore({
         loadEquipments({ state }) {
             API.getEquipments()
                 .then(data => {
-                    debugger;
                     state.equipments = data.equipments;
                     state.equipmentTypes = data.equipmentTypes;
                 })

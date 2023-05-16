@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
+using WebAPI.DTO;
 using WebAPI.Models;
 
 namespace WebAPI.Controllers
@@ -21,9 +23,13 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<Equipment> GetEquipments()
+        public EquipmentsAndTypes GetEquipments()
         {
-            return _context.Equipments.ToList();
+            EquipmentsAndTypes eqTypes = new EquipmentsAndTypes();
+            eqTypes.Equipments = _context.Equipments.ToList();
+            eqTypes.EquipmentTypes = _context.EquipmentTypes.ToList();
+
+            return eqTypes;
         }
 
         [HttpGet("{id}")]

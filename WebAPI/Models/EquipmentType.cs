@@ -8,5 +8,5 @@ public partial class EquipmentType
 
     public string? Description { get; set; }
 
-    public virtual ICollection<Equipment> Equipment { get; } = new List<Equipment>();
+    public virtual ICollection<Equipment> Equipment { get;  set;} = new List<Equipment>();
 }

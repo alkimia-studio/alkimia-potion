@@ -10,6 +10,7 @@ const store = createStore({
         collaborators: [],
         equipments: [],
         permits: [],
+        equipmentTypes: [],
         error: null,
     },
     getters: {
@@ -24,6 +25,9 @@ const store = createStore({
         },
         permits({ state }) {
             return state.permits;
+        },
+        equipmentTypes({ state }) {
+            return state.equipmentTypes;
         },
         lastError({ state }) {
             return state.error;
@@ -104,7 +108,9 @@ const store = createStore({
         loadEquipments({ state }) {
             API.getEquipments()
                 .then(data => {
-                    state.equipments = data;
+                    debugger;
+                    state.equipments = data.equipments;
+                    state.equipmentTypes = data.equipmentTypes;
                 })
                 .catch(err => {
                     state.error = err;

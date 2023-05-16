@@ -97,6 +97,7 @@
         },
         setup(props) {
             const equipments = useStore('equipments');
+            //const equipments = useStore('equipments');
 
             const addEquipment = () => {
                 store.dispatch('addEquipment', {

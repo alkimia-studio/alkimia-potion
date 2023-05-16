@@ -12,7 +12,7 @@ public partial class Equipment
 
     public string? Serialnumber { get; set; }
 
-    public byte[]? Purchasedate { get; set; }
+    public DateTime? Purchasedate { get; set; }
 
     public long Type { get; set; }
 
@@ -24,5 +24,5 @@ public partial class Equipment
 
     public virtual Collaborator? CollaboratorNavigation { get; set; }
 
-    public virtual EquipmentType TypeNavigation { get; set; } = null!;
+    public virtual EquipmentType? TypeNavigation { get; set; }
 }

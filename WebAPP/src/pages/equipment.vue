@@ -77,11 +77,19 @@
                                 <f7-icon f7="qrcode"></f7-icon>
                             </template>
                         </f7-list-input>
-                        <f7-list-input type="int" :disabled="!editMode" v-model:value="equipment.type" label="Type">
+
+                        wwwwwwwwwwwwwwwwwwwwwwww
+
+                        <f7-list-input type="select" :disabled="!editMode" v-model:value="equipment.type" label="Type">
+                            
+                            <option v-for="(type, index) in equipmentTypes" :value="type.id">{{type.name + " - " + type.description}}</option>
                             <template #media>
                                 <f7-icon f7="device_phone_portrait"></f7-icon>
                             </template>
                         </f7-list-input>
+
+
+
                         <f7-list-input type="int" :disabled="!editMode" v-model:value="equipment.price"  label="Price">
                             <template #media>
                                 <f7-icon f7="device_phone_portrait"></f7-icon>
@@ -115,6 +123,7 @@
         setup(props) {
             const equipments = useStore('equipments');
             const collaborators = useStore('collaborators');
+            const equipmentTypes = useStore('equipmentTypes');
 
             const equipmentId = props.f7route.params.id;
             let currentEquipment;
@@ -125,6 +134,9 @@
             });
 
             const postEquipment = (equipment) => {
+
+
+                debugger;
                 if (equipment.id == 0) {
                     store.dispatch('postEquipment', equipment).then(function () {
                         props.f7router.navigate('/Equipments/');
@@ -160,7 +172,8 @@
                 equipment: currentEquipment,
                 collaborators,
                 postEquipment,
-                deleteEquipment
+                deleteEquipment,
+                equipmentTypes
             };
         },
     };

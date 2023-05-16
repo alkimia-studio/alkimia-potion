@@ -1,4 +1,6 @@
-﻿namespace WebAPI.Models;
+﻿using System.Text.Json.Serialization;
+
+namespace WebAPI.Models;
 
 public partial class EquipmentType
 {
@@ -8,5 +10,6 @@ public partial class EquipmentType
 
     public string? Description { get; set; }
 
-    public virtual ICollection<Equipment> Equipment { get;  set;} = new List<Equipment>();
+    [JsonIgnore]
+    public virtual ICollection<Equipment> Equipment { get; } = new List<Equipment>();
 }

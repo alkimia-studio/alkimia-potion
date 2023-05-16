@@ -22,7 +22,7 @@ public partial class Equipment
 
     public string? Note { get; set; }
 
-    public virtual Collaborator? CollaboratorNavigation { get; set; }
+    public virtual Collaborator? CollaboratorNavigation { get; }
 
-    public virtual EquipmentType? TypeNavigation { get; set; }
+    public virtual EquipmentType? TypeNavigation { get; }
 }

@@ -20,5 +20,5 @@ public partial class Permit
 
     public string Type { get; set; } = null!;
 
-    public virtual Collaborator? CollaboratorNavigation { get; set; }
+    public virtual Collaborator? CollaboratorNavigation { get; }
 }

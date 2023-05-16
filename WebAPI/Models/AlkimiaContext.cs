@@ -94,18 +94,20 @@ public partial class AlkimiaContext : DbContext
 
             entity.HasOne(d => d.CollaboratorNavigation).WithMany(p => p.Equipment).HasForeignKey(d => d.Collaborator);
 
-            entity.HasOne(d => d.TypeNavigation).WithMany(p => p.Equipment)
-                .HasForeignKey(d => d.Type)
-                .OnDelete(DeleteBehavior.ClientSetNull);
+            entity.HasOne(d => d.TypeNavigation).WithMany(p => p.Equipment).HasForeignKey(d => d.Type);
         });
 
         modelBuilder.Entity<EquipmentType>(entity =>
         {
-            entity.ToTable("EquipmentType");
-
-            entity.HasIndex(e => e.Id, "IX_EquipmentType_Id").IsUnique();
-
-            entity.Property(e => e.Id).ValueGeneratedNever();
+            entity.Property(e => e.Id)
+                .ValueGeneratedNever()
+                .HasColumnName("id");
+            entity.Property(e => e.Name)
+                .HasColumnType("nvarchar(50)")
+                .HasColumnName("name");
+            entity.Property(e => e.Description)
+                .HasColumnType("text(2147483647)")
+                .HasColumnName("description");
         });
 
         modelBuilder.Entity<Permit>(entity =>

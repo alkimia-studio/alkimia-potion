@@ -219,7 +219,6 @@
             const redirect = () => {
                 if (error && error.value && error.value.response && error.value.response.status == "401") {
                     store.dispatch("setError", null);
-                    error.value = null;
 
                     const element = document.querySelector("#my-login-screen");
                     f7.loginScreen.open(element);
@@ -238,6 +237,7 @@
                             
                         } else {
                             const element = document.querySelector("#my-login-screen");
+                            store.dispatch("setError", null);
                             f7.loginScreen.open(element);
                         }
                     });

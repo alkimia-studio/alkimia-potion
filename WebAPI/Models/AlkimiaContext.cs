@@ -27,7 +27,9 @@ public partial class AlkimiaContext : DbContext
     {
         modelBuilder.Entity<Collaborator>(entity =>
         {
-            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.Id)
+                .ValueGeneratedOnAdd()
+                .HasColumnName("id");
             entity.Property(e => e.Address)
                 .HasColumnType("text(2147483647)")
                 .HasColumnName("address");
@@ -66,7 +68,7 @@ public partial class AlkimiaContext : DbContext
         modelBuilder.Entity<Equipment>(entity =>
         {
             entity.Property(e => e.Id)
-                .ValueGeneratedNever()
+                .ValueGeneratedOnAdd()
                 .HasColumnName("id");
             entity.Property(e => e.Collaborator).HasColumnName("collaborator");
             entity.Property(e => e.Description)
@@ -100,7 +102,7 @@ public partial class AlkimiaContext : DbContext
         modelBuilder.Entity<EquipmentType>(entity =>
         {
             entity.Property(e => e.Id)
-                .ValueGeneratedNever()
+                .ValueGeneratedOnAdd()
                 .HasColumnName("id");
             entity.Property(e => e.Name)
                 .HasColumnType("nvarchar(50)")
@@ -112,7 +114,9 @@ public partial class AlkimiaContext : DbContext
 
         modelBuilder.Entity<Permit>(entity =>
         {
-            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.Id)
+                .ValueGeneratedOnAdd()
+                .HasColumnName("id");
             entity.Property(e => e.Allday)
                 .HasColumnType("bit")
                 .HasColumnName("allday");

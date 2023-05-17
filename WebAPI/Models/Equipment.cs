@@ -2,9 +2,9 @@
 
 public partial class Equipment
 {
-    public long Id { get; set; }
+    public int Id { get; set; }
 
-    public long? Collaborator { get; set; }
+    public int? Collaborator { get; set; }
 
     public string Name { get; set; } = null!;
 
@@ -14,7 +14,7 @@ public partial class Equipment
 
     public DateTime? Purchasedate { get; set; }
 
-    public long Type { get; set; }
+    public int Type { get; set; }
 
     public double? Price { get; set; }
 

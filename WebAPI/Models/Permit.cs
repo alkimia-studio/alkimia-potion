@@ -2,9 +2,9 @@
 
 public partial class Permit
 {
-    public long Id { get; set; }
+    public int Id { get; set; }
 
-    public long? Collaborator { get; set; }
+    public int? Collaborator { get; set; }
 
     public DateTime From { get; set; }
 

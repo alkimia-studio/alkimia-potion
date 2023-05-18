@@ -37,3 +37,56 @@ export function managePermits(props) {
         searchPermits
     };
 };
+
+export function managePermit(props) {
+    const permits = useStore('permits');
+    const collaborators = useStore('collaborators');
+    const permitId = props.f7route.params.id;
+    let currentPermit;
+    permits.value.forEach(function (permit) {
+        if (permit.id.toString() === permitId) {
+            currentPermit = permit;
+        }
+    });
+
+    const postPermit = (permit) => {
+        if (permit.id == 0) {
+            permit.timestamp = Date.now();
+            debugger;
+            store.dispatch('postPermit', permit).then(function () {
+                props.f7router.navigate('/Permits/');
+            })
+                .catch(function (error) {
+                    console.log(error);
+                });
+        }
+        else {
+            store.dispatch('putPermit', permit).then(function () {
+                props.f7router.navigate('/Permits/');
+            })
+                .catch(function (error) {
+                    console.log(error);
+                });
+        }
+    };
+
+    const deletePermit = (permitId) => {
+        if (confirm('Are you sure?')) {
+            store.dispatch('deletePermit', permitId).then(function () {
+                alert("Done!");
+            })
+                .catch(function (error) {
+                    console.log(error);
+                    alert("Fail!");
+                });
+            props.f7router.navigate('/Permits/');
+        }
+    };
+
+    return {
+        permit: currentPermit,
+        collaborators,
+        postPermit,
+        deletePermit
+    };
+};

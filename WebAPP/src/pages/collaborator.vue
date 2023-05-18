@@ -109,8 +109,8 @@
 </f7-page>
 </template>
 <script>
-    import { useStore } from 'framework7-vue';
-    import store from '../js/store';
+    import { manageCollaborator } from '../js/collaborators';
+
     export default {
         props: {
             f7route: Object,
@@ -122,50 +122,13 @@
             }
         },
         setup(props) {
-            const collaborators = useStore('collaborators');
-            const collaboratorId = props.f7route.params.id;
-            let currentCollaborator;
-            collaborators.value.forEach(function (collaborator) {
-                if (collaborator.id.toString() === collaboratorId) {
-                    currentCollaborator = collaborator;
-                }
-            });
-            const postCollaborator = (collaborator) => {
-                if (collaborator.id == 0) {
-                    store.dispatch('postCollaborator', collaborator).then(function () {
-                        props.f7router.navigate('/Collaborators/');
-                    })
-                    .catch(function (error) {
-                        console.log(error);
-                    });
-                }
-                else {
-                    store.dispatch('putCollaborator', collaborator).then(function () {
-                        props.f7router.navigate('/Collaborators/');
-                    })
-                    .catch(function (error) {
-                        console.log(error);
-                    });
-                }
-            };
-            const deleteCollaborator = (collaboratorId) => {
-                if (confirm('Are you sure?')) {
-                    store.dispatch('deleteCollaborator', collaboratorId)
-                        .then(function () {
-                        alert("Done!");
-                    })
-                    .catch(function (error) {
-                        console.log(error);
-                        alert("Fail!");
-                    });
-                    props.f7router.navigate('/Collaborators/');
-                }
-            }
+            const { collaborator, postCollaborator, deleteCollaborator } = manageCollaborator(props);
+
             return {
-                collaborator: currentCollaborator,
+                collaborator,
                 postCollaborator,
                 deleteCollaborator
             };
-        },
+        }
     };
 </script>

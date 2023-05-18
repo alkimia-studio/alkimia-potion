@@ -90,8 +90,7 @@
     </f7-page>
 </template>
 <script>
-    import { useStore } from 'framework7-vue';
-    import store from '../js/store';
+    import { managePermit } from '../js/permits';
 
     export default {
         props: {
@@ -104,57 +103,14 @@
             }
         },
         setup(props) {
-
-            const permits = useStore('permits');
-            const collaborators = useStore('collaborators');
-            const permitId = props.f7route.params.id;
-            let currentPermit;
-            permits.value.forEach(function (permit) {
-                if (permit.id.toString() === permitId) {
-                    currentPermit = permit;
-                }
-            });
-
-            const postPermit = (permit) => {
-                if (permit.id == 0) {
-                    permit.timestamp = Date.now();
-                    debugger;
-                    store.dispatch('postPermit', permit).then(function () {  
-                        props.f7router.navigate('/Permits/');
-                    })
-                        .catch(function (error) {
-                            console.log(error);
-                        });
-                }
-                else {
-                    store.dispatch('putPermit', permit).then(function () {
-                        props.f7router.navigate('/Permits/');
-                    })
-                    .catch(function (error) {
-                        console.log(error);
-                    });
-                }
-            };
-
-            const deletePermit = (permitId) => {
-                if (confirm('Are you sure?')) {
-                    store.dispatch('deletePermit', permitId).then(function () {
-                        alert("Done!");
-                    })
-                    .catch(function (error) {
-                        console.log(error);
-                        alert("Fail!");
-                    });
-                    props.f7router.navigate('/Permits/');
-                }
-            };
+            const { permit, collaborators, postPermit, deletePermit } = managePermit(props);
 
             return {
-                permit: currentPermit,
+                permit,
                 collaborators,
                 postPermit,
                 deletePermit
             };
-        },
+        }
     };
 </script>

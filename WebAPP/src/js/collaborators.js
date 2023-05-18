@@ -43,3 +43,50 @@ export function manageCollaborators(props) {
         searchCollaborators
     };
 }
+
+export function manageCollaborator(props) {
+    const collaborators = useStore('collaborators');
+    const collaboratorId = props.f7route.params.id;
+    let currentCollaborator;
+    collaborators.value.forEach(function (collaborator) {
+        if (collaborator.id.toString() === collaboratorId) {
+            currentCollaborator = collaborator;
+        }
+    });
+    const postCollaborator = (collaborator) => {
+        if (collaborator.id == 0) {
+            store.dispatch('postCollaborator', collaborator).then(function () {
+                props.f7router.navigate('/Collaborators/');
+            })
+                .catch(function (error) {
+                    console.log(error);
+                });
+        }
+        else {
+            store.dispatch('putCollaborator', collaborator).then(function () {
+                props.f7router.navigate('/Collaborators/');
+            })
+                .catch(function (error) {
+                    console.log(error);
+                });
+        }
+    };
+    const deleteCollaborator = (collaboratorId) => {
+        if (confirm('Are you sure?')) {
+            store.dispatch('deleteCollaborator', collaboratorId)
+                .then(function () {
+                    alert("Done!");
+                })
+                .catch(function (error) {
+                    console.log(error);
+                    alert("Fail!");
+                });
+            props.f7router.navigate('/Collaborators/');
+        }
+    }
+    return {
+        collaborator: currentCollaborator,
+        postCollaborator,
+        deleteCollaborator
+    };
+};

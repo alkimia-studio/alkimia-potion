@@ -103,8 +103,7 @@
     </f7-page>
 </template>
 <script>
-    import { useStore } from 'framework7-vue';
-    import store from '../js/store';
+    import { manageEquipment } from '../js/equipments';
 
     export default {
         props: {
@@ -117,52 +116,10 @@
             }
         },
         setup(props) {
-            const equipments = useStore('equipments');
-            const collaborators = useStore('collaborators');
-            const equipmentTypes = useStore('equipmentTypes');
-
-            const equipmentId = props.f7route.params.id;
-            let currentEquipment;
-            equipments.value.forEach(function (equipment) {
-                if (equipment.id.toString() === equipmentId) {
-                    currentEquipment = equipment;
-                }
-            });
-
-            const postEquipment = (equipment) => {
-                if (equipment.id == 0) {
-                    store.dispatch('postEquipment', equipment).then(function () {
-                        props.f7router.navigate('/Equipments/');
-                    })
-                    .catch(function (error) {
-                        console.log(error);
-                    });
-                }
-                else {
-                    store.dispatch('putEquipment', equipment).then(function () {
-                        props.f7router.navigate('/Equipments/');
-                    })
-                    .catch(function (error) {
-                        console.log(error);
-                    });
-                }
-            };
-
-            const deleteEquipment = (equipmentId) => {
-                if (confirm('Are you sure?')) {
-                    store.dispatch('deleteEquipment', equipmentId).then(function () {
-                        alert("Done!");
-                    })
-                    .catch(function (error) {
-                        console.log(error);
-                        alert("Fail!");
-                    });
-                    props.f7router.navigate('/Equipments/');
-                }
-            };
+            const { equipment, collaborators, postEquipment, deleteEquipment, equipmentTypes } = manageEquipment(props);
 
             return {
-                equipment: currentEquipment,
+                equipment,
                 collaborators,
                 postEquipment,
                 deleteEquipment,

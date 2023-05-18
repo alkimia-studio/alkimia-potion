@@ -118,7 +118,7 @@ public partial class AlkimiaContext : DbContext
                 .ValueGeneratedOnAdd()
                 .HasColumnName("id");
             entity.Property(e => e.Allday)
-                .HasColumnType("bit")
+                .HasColumnType("bool")
                 .HasColumnName("allday");
             entity.Property(e => e.Collaborator).HasColumnName("collaborator");
             entity.Property(e => e.From)
@@ -127,12 +127,14 @@ public partial class AlkimiaContext : DbContext
             entity.Property(e => e.Note)
                 .HasColumnType("text(2147483647)")
                 .HasColumnName("note");
-            entity.Property(e => e.Timestamp).HasColumnName("timestamp");
+            entity.Property(e => e.Timestamp)
+                .HasColumnType("integer")
+                .HasColumnName("timestamp");
             entity.Property(e => e.To)
                 .HasColumnType("datetime")
                 .HasColumnName("to");
             entity.Property(e => e.Torecover)
-                .HasColumnType("bit")
+                .HasColumnType("bool")
                 .HasColumnName("torecover");
             entity.Property(e => e.Type)
                 .HasColumnType("nvarchar(50)")

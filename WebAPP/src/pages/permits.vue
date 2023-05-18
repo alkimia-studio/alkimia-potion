@@ -82,8 +82,7 @@
     </f7-page>
 </template>
 <script>
-    import { useStore } from 'framework7-vue';
-    import store from '../js/store';
+    import { managePermits } from '../js/permits';
 
     export default {
         props: {
@@ -96,41 +95,14 @@
             }
         },
         setup(props) {
-            const permits = useStore('permits');
-
-            const addPermit = () => {
-                store.dispatch('addPermit', {
-                    "id": 0,
-                    "collaborator": 0,
-                    "from": "",
-                    "to": "",
-                    "allday": true,
-                    "timestamp": "",
-                    "note": "",
-                    "torecover": false,
-                    "type": "Permit",
-                }).then(function () {
-                    props.f7router.navigate('/permit/0/', {})
-                })
-                .catch(function (error) {
-                    console.log(error);
-                });
-            };
-
-            const searchPermits = (text) => {
-                alert("Search: " + text);
-            };
-
-            const permitDetails = (id) => {
-                props.f7router.navigate('/permit/' + id + '/', {})
-            };
+            const { permits, addPermit, permitDetails, searchPermits } = managePermits(props);
 
             return {
                 permits,
                 addPermit,
                 permitDetails,
                 searchPermits
-            };
+            }; 
         }
     };
 </script>

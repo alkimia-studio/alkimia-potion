@@ -104,6 +104,7 @@
             }
         },
         setup(props) {
+
             const permits = useStore('permits');
             const collaborators = useStore('collaborators');
             const permitId = props.f7route.params.id;
@@ -116,7 +117,9 @@
 
             const postPermit = (permit) => {
                 if (permit.id == 0) {
-                    store.dispatch('postPermit', permit).then(function () {
+                    permit.timestamp = Date.now();
+                    debugger;
+                    store.dispatch('postPermit', permit).then(function () {  
                         props.f7router.navigate('/Permits/');
                     })
                         .catch(function (error) {

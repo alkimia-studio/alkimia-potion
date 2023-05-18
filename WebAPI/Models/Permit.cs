@@ -12,7 +12,7 @@ public partial class Permit
 
     public bool? Allday { get; set; }
 
-    public DateTime Timestamp { get; set; }
+    public double Timestamp { get; set; }
 
     public string? Note { get; set; }
 

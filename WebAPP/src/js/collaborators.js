@@ -1,8 +1,17 @@
 import { useStore } from 'framework7-vue';
 import store from './store';
+import { ref, watch} from 'vue';
 
 export function manageCollaborators(props) {
     const collaborators = useStore('collaborators');
+    let filteredCollaborators = ref([]);
+    let pagedCollaborators = ref([]);
+    let searchText = ref('');
+
+    watch(collaborators, (currentCollaborators, prevCollaborators) => {
+        searchCollaborators();
+    })
+
     const addCollaborator = () => {
         store.dispatch('addCollaborator', {
             "id": 0,
@@ -29,14 +38,28 @@ export function manageCollaborators(props) {
         props.f7router.navigate('/collaborator/' + id + '/', {})
     };
 
-    const searchCollaborators = (text) => {
-        alert("Search: " + text);
-        filteredItems = store.state.collaborators.filter(item => {
-            return item.name != ''
-        })
+    const searchCollaborators = () => {
+        if (searchText.value == null || searchText.value == "") {
+            filteredCollaborators.value = [...collaborators.value];
+        }
+        else {
+            filteredCollaborators.value = collaborators.value.filter
+                (
+                c => (c.surname.toLowerCase().indexOf(searchText.value) != -1 || c.name.toLowerCase().indexOf(searchText.value) != -1 ||
+                c.email.toLowerCase().indexOf(searchText.value) != -1 ||
+                c.tel.toLowerCase().indexOf(searchText.value) != -1)
+            );
+        }
+    };
+
+    const pageCollaborators = (pageNumber, quantityForPage) => {
+        let index = pageNumber * quantityForPage;
+        pagedCollaborators = filteredCollaborators.slice(index, quantityForPage)
     };
 
     return {
+        searchText,
+        filteredCollaborators,
         collaborators,
         addCollaborator,
         collaboratorDetails,

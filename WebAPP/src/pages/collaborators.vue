@@ -29,7 +29,7 @@
                         </div>
                     </div>
                     <div class="row-cell-20 text-align-right">
-                        <f7-button fill @click="searchCollaborators(searchText)" class="padding-horizontal display-inline-block">
+                        <f7-button fill @click="searchCollaborators()" class="padding-horizontal display-inline-block">
                             <strong class="display-inline-block">
                                 Search
                             </strong>
@@ -40,7 +40,7 @@
 
             <div class="bg-custom-color-1 border-radius-12 elevation">
                     <div class="row padding border-bottom-solid-2 row-hover"
-                         v-for="collaborator in collaborators"
+                         v-for="collaborator in filteredCollaborators"
                          :key="collaborator.id"
                          @click="collaboratorDetails(collaborator.id)">
                         <div class="row-cell-30 display-flex align-items-center">
@@ -63,9 +63,9 @@
                             <f7-icon f7="chevron_right" color="gray"></f7-icon>
                         </div>
                     </div>
-                <div class="row padding" v-if="collaborators && collaborators.length > 0">
+                <div class="row padding" v-if="filteredCollaborators && filteredCollaborators.length > 0">
                     <div class="row-cell-30">
-                        <strong class="display-inline-block margin-right-half">25</strong> 
+                        <strong class="display-inline-block margin-right-half">1</strong> 
                         Items per page 
                     </div>
                     <div class="row-cell-70 display-flex justify-content-flex-end align-items-center">
@@ -92,16 +92,12 @@
             f7route: Object,
             f7router: Object,
         },
-        data() {
-            return {
-                searchText: "",
-                filteredItems: null
-            }
-        },
         setup(props) {
-            const { collaborators, addCollaborator, collaboratorDetails, searchCollaborators } = manageCollaborators(props);
+            const { collaborators, addCollaborator, collaboratorDetails, searchCollaborators, filteredCollaborators, searchText } = manageCollaborators(props);
 
             return {
+                filteredCollaborators,
+                searchText,
                 collaborators,
                 addCollaborator,
                 collaboratorDetails,

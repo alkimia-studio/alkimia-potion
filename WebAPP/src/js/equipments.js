@@ -1,8 +1,15 @@
 import { useStore } from 'framework7-vue';
 import store from './store';
+import { ref, watch } from 'vue';
 
 export function manageEquipments(props) {
     const equipments = useStore('equipments');
+    let filteredEquipments = ref([]);
+    let searchText = ref('');
+
+    watch(equipments, (currentEquipments, prevEquipments) => {
+        searchEquipments();
+    })
 
     const addEquipment = () => {
         store.dispatch('addEquipment', {
@@ -28,12 +35,23 @@ export function manageEquipments(props) {
         props.f7router.navigate('/equipment/' + id + '/', {})
     };
 
-    const searchEquipments = (text) => {
-        alert("Search: " + text);
+    const searchEquipments = () => {
+        if (searchText.value == null || searchText.value == "") {
+            filteredEquipments.value = [...equipments.value];
+        }
+        else {
+            filteredEquipments.value = equipments.value.filter
+                (
+                    e => (e.name.toLowerCase().indexOf(searchText.value) != -1 || e.description.toLowerCase().indexOf(searchText.value) != -1 ||
+                        e.serialnumber.toLowerCase().indexOf(searchText.value) != -1)
+                );
+        }
     };
 
     return {
+        searchText,
         equipments,
+        filteredEquipments,
         addEquipment,
         equipmentDetails,
         searchEquipments

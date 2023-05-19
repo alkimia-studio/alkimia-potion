@@ -26,7 +26,7 @@ namespace WebAPI.Controllers
         public EquipmentsAndTypes GetEquipments()
         {
             EquipmentsAndTypes eqTypes = new EquipmentsAndTypes();
-            eqTypes.Equipments = _context.Equipments.ToList();
+            eqTypes.Equipments = _context.Equipments.Include(e => e.CollaboratorNavigation).ToList();
             eqTypes.EquipmentTypes = _context.EquipmentTypes.ToList();
 
             return eqTypes;

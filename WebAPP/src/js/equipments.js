@@ -6,6 +6,13 @@ export function manageEquipments(props) {
     const equipments = useStore('equipments');
     let filteredEquipments = ref([]);
     let searchText = ref('');
+    let pagedEquipments = ref([]);
+    const quantityForPage = 2;
+    let currentPage = ref(0);
+
+    watch(filteredEquipments, (currentFilteredEquipments, prevFilteredEquipments) => {
+        paginateEquipments(1);
+    })
 
     watch(equipments, (currentEquipments, prevEquipments) => {
         searchEquipments();
@@ -52,13 +59,30 @@ export function manageEquipments(props) {
         }
     };
 
+    const paginateEquipments = (pageNumber) => {
+        currentPage.value = pageNumber;
+        const start = (pageNumber - 1) * quantityForPage;
+        const end = start + quantityForPage;
+        pagedEquipments.value = filteredEquipments.value.slice(start, end);
+
+    };
+
+    const getEquipmentsTotalPage = () => {
+        let number = Math.ceil(filteredEquipments.value.length / quantityForPage);
+        return number;
+    };
+
     return {
         searchText,
         equipments,
         filteredEquipments,
         addEquipment,
         equipmentDetails,
-        searchEquipments
+        searchEquipments,
+        getEquipmentsTotalPage,
+        paginateEquipments,
+        pagedEquipments,
+        currentPage
     };
 };
 

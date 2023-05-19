@@ -53,11 +53,13 @@
                                 <f7-icon f7="person_2"></f7-icon>
                             </template>
                         </f7-list-input>
-                        <f7-list-input type="text" :disabled="!editMode" v-model:value="permit.type" label="Type">
-                            <template #media>
-                                <f7-icon f7="person_2"></f7-icon>
-                            </template>
+
+                        <f7-list-input type="select" :disabled="!editMode" placeholder="type..." v-model:value="permit.type" label="Type">
+                            <option value="ferie">Ferie</option>
+                            <option value="permesso">Permesso</option>
+                            <option value="malattia">Malattia</option>
                         </f7-list-input>
+
                         <f7-list-input type="datetime-local" :disabled="!editMode" v-model:value="permit.from" label="From">
                             <template #media>
                                 <f7-icon f7="house"></f7-icon>

@@ -39,7 +39,7 @@
 
             <div class="bg-custom-color-1 border-radius-12 elevation">
                 <div class="row padding border-bottom-solid-2 row-hover"
-                     v-for="equipment in filteredEquipments"
+                     v-for="equipment in pagedEquipments"
                      :key="equipment.id"
                      @click="equipmentDetails(equipment.id)">
                     <div class="row-cell-30 display-flex align-items-center">
@@ -63,17 +63,18 @@
                 <div class="row padding" v-if="filteredEquipments && filteredEquipments.length > 0">
                     <div class="row-cell-30">
                         <strong class="display-inline-block margin-right-half">25</strong>
-                        Items per page
+                        Items per page  of {{filteredEquipments.length}}
                     </div>
                     <div class="row-cell-70 display-flex justify-content-flex-end align-items-center">
                         <div class="page-number-item padding-horizontal padding-vertical-half">
-                            <f7-link icon-f7="chevron_left"></f7-link>
+                            <f7-link icon-f7="chevron_left" @click="paginateEquipments(1)"></f7-link>
                         </div>
-                        <div v-for="n in 5" class="page-number-item padding-horizontal padding-vertical-half">
-                            {{n}}
+                        <div v-for="n in getEquipmentsTotalPage()" @click="paginateEquipments(n)" class="page-number-item padding-horizontal padding-vertical-half">
+                            <b v-if="n == currentPage" style="font-size: 24px;">{{n}}</b>
+                            <span v-if="n != currentPage">{{n}}</span>
                         </div>
                         <div class="padding-left padding-vertical-half">
-                            <f7-link icon-f7="chevron_right"></f7-link>
+                            <f7-link icon-f7="chevron_right" @click="paginateEquipments(getEquipmentsTotalPage())"></f7-link>
                         </div>
                     </div>
                 </div>
@@ -90,7 +91,11 @@
             f7router: Object,
         },
         setup(props) {
-            const { equipments, addEquipment, equipmentDetails, searchEquipments, filteredEquipments, searchText } = manageEquipments(props);
+            const { equipments, addEquipment, equipmentDetails, searchEquipments, filteredEquipments, searchText,
+                getEquipmentsTotalPage,
+                paginateEquipments,
+                pagedEquipments,
+                currentPage } = manageEquipments(props);
 
             return {
                 filteredEquipments,
@@ -98,7 +103,11 @@
                 equipments,
                 addEquipment,
                 equipmentDetails,
-                searchEquipments
+                searchEquipments,
+                getEquipmentsTotalPage,
+                paginateEquipments,
+                pagedEquipments,
+                currentPage
             };
         }
     };

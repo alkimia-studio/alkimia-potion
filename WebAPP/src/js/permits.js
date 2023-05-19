@@ -1,6 +1,6 @@
 import { useStore } from 'framework7-vue';
 import store from './store';
-import { ref, watch } from 'vue';
+import { ref, watch, onMounted } from 'vue';
 
 export function managePermits(props) {
     const permits = useStore('permits');
@@ -9,7 +9,11 @@ export function managePermits(props) {
 
     watch(permits, (currentPermits, prevPermits) => {
         searchPermits();
-    })
+    });
+
+    onMounted(() => {
+        searchPermits();
+    });
 
     const addPermit = () => {
         store.dispatch('addPermit', {

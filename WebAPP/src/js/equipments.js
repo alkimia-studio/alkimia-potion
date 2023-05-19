@@ -1,6 +1,6 @@
 import { useStore } from 'framework7-vue';
 import store from './store';
-import { ref, watch } from 'vue';
+import { ref, watch, onMounted } from 'vue';
 
 export function manageEquipments(props) {
     const equipments = useStore('equipments');
@@ -9,7 +9,11 @@ export function manageEquipments(props) {
 
     watch(equipments, (currentEquipments, prevEquipments) => {
         searchEquipments();
-    })
+    });
+
+    onMounted(() => {
+        searchEquipments();
+    });
 
     const addEquipment = () => {
         store.dispatch('addEquipment', {

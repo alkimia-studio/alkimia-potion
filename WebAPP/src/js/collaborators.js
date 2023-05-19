@@ -1,6 +1,6 @@
 import { useStore } from 'framework7-vue';
 import store from './store';
-import { ref, watch} from 'vue';
+import { ref, watch, onMounted } from 'vue';
 
 export function manageCollaborators(props) {
     const collaborators = useStore('collaborators');
@@ -13,11 +13,15 @@ export function manageCollaborators(props) {
 
     watch(collaborators, (currentCollaborators, prevCollaborators) => {
         searchCollaborators();
-    })
+    });
+
+    onMounted(() => {
+        searchCollaborators();
+    });
 
     watch(filteredCollaborators, (currentFilteredCollaborators, prevFilteredCollaborators) => {
         paginateCollaborators(1);
-    })
+    });
 
     const addCollaborator = () => {
         store.dispatch('addCollaborator', {

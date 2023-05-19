@@ -1,8 +1,15 @@
 import { useStore } from 'framework7-vue';
 import store from './store';
+import { ref, watch } from 'vue';
 
 export function managePermits(props) {
     const permits = useStore('permits');
+    let filteredPermits = ref([]);
+    let searchText = ref('');
+
+    watch(permits, (currentPermits, prevPermits) => {
+        searchPermits();
+    })
 
     const addPermit = () => {
         store.dispatch('addPermit', {
@@ -22,8 +29,16 @@ export function managePermits(props) {
             });
     };
 
-    const searchPermits = (text) => {
-        alert("Search: " + text);
+    const searchPermits = () => {
+        if (searchText.value == null || searchText.value == "") {
+            filteredPermits.value = [...permits.value];
+        }
+        else {
+            filteredPermits.value = permits.value.filter
+                (
+                    p => (p.collaboratorNavigation.name.toLowerCase().indexOf(searchText.value) != -1 || p.collaboratorNavigation.surname.toLowerCase().indexOf(searchText.value) != -1)
+                );
+        }
     };
 
     const permitDetails = (id) => {
@@ -32,6 +47,8 @@ export function managePermits(props) {
 
     return {
         permits,
+        searchText,
+        filteredPermits,
         addPermit,
         permitDetails,
         searchPermits

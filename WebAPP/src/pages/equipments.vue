@@ -22,7 +22,7 @@
                         <div style="width:70%">
                             <f7-input type="text"
                                       v-model:value="searchText"
-                                      placeholder="Search for Name, Surname, Email and Phone number"
+                                      placeholder="Search for Name, Description, and Serial number"
                                       class="input-blank"
                                       clear-button />
                         </div>
@@ -39,7 +39,7 @@
 
             <div class="bg-custom-color-1 border-radius-12 elevation">
                 <div class="row padding border-bottom-solid-2 row-hover"
-                     v-for="equipment in equipments"
+                     v-for="equipment in filteredEquipments"
                      :key="equipment.id"
                      @click="equipmentDetails(equipment.id)">
                     <div class="row-cell-30 display-flex align-items-center">
@@ -60,7 +60,7 @@
                         <f7-icon f7="chevron_right" color="gray"></f7-icon>
                     </div>
                 </div>
-                <div class="row padding" v-if="equipments && equipments.length > 0">
+                <div class="row padding" v-if="filteredEquipments && filteredEquipments.length > 0">
                     <div class="row-cell-30">
                         <strong class="display-inline-block margin-right-half">25</strong>
                         Items per page
@@ -89,15 +89,12 @@
             f7route: Object,
             f7router: Object,
         },
-        data() {
-            return {
-                searchText: ""
-            }
-        },
         setup(props) {
-            const { equipments, addEquipment, equipmentDetails, searchEquipments } = manageEquipments(props);
+            const { equipments, addEquipment, equipmentDetails, searchEquipments, filteredEquipments, searchText } = manageEquipments(props);
 
             return {
+                filteredEquipments,
+                searchText,
                 equipments,
                 addEquipment,
                 equipmentDetails,

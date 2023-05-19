@@ -1,4 +1,6 @@
-﻿namespace WebAPI.Models;
+﻿using System.Text.Json.Serialization;
+
+namespace WebAPI.Models;
 
 public partial class Collaborator
 {
@@ -26,7 +28,9 @@ public partial class Collaborator
 
     public string? Note { get; set; }
 
+    [JsonIgnore]
     public virtual ICollection<Equipment> Equipment { get; } = new List<Equipment>();
 
+    [JsonIgnore]
     public virtual ICollection<Permit> Permits { get; } = new List<Permit>();
 }

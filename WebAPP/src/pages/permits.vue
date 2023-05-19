@@ -39,7 +39,7 @@
 
             <div class="bg-custom-color-1 border-radius-12 elevation">
                 <div class="row padding border-bottom-solid-2 row-hover"
-                     v-for="permit in permits"
+                     v-for="permit in filteredPermits"
                      :key="permit.id"
                      @click="permitDetails(permit.id)">
                     <div class="row-cell-30 display-flex align-items-center">
@@ -60,7 +60,7 @@
                         <f7-icon f7="chevron_right" color="gray"></f7-icon>
                     </div>
                 </div>
-                <div class="row padding" v-if="permits && permits.length > 0">
+                <div class="row padding" v-if="filteredPermits && filteredPermits.length > 0">
                     <div class="row-cell-30">
                         <strong class="display-inline-block margin-right-half">25</strong>
                         Items per page
@@ -89,16 +89,13 @@
             f7route: Object,
             f7router: Object,
         },
-        data() {
-            return {
-                searchText: ""
-            }
-        },
         setup(props) {
-            const { permits, addPermit, permitDetails, searchPermits } = managePermits(props);
+            const { permits, addPermit, permitDetails, searchPermits, filteredPermits, searchText } = managePermits(props);
 
             return {
                 permits,
+                filteredPermits,
+                searchText,
                 addPermit,
                 permitDetails,
                 searchPermits

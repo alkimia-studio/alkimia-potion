@@ -23,7 +23,7 @@ namespace WebAPI.Controllers
         [HttpGet]
         public IEnumerable<Permit> GetPermits()
         {
-            return _context.Permits.ToList();
+            return _context.Permits.Include(p => p.CollaboratorNavigation).ToList();
         }
 
         [HttpGet("{collaboratorId}")]

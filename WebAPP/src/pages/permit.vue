@@ -68,16 +68,18 @@
                                 <f7-icon f7="doc_text_viewfinder"></f7-icon>
                             </template>
                         </f7-list-input>
-                        <f7-list-input type="checkbox" :disabled="!editMode" v-model:checked="permit.allday" label="All day">
+                        <f7-list-item title="All day" class="item-input">
+                            <f7-checkbox :disabled="!editMode" v-model:checked="permit.allday" ></f7-checkbox>
                             <template #media>
                                 <f7-icon f7="doc_person"></f7-icon>
                             </template>
-                        </f7-list-input>
-                        <f7-list-input type="checkbox" :disabled="!editMode" v-model:checked="permit.torecover" label="To recover">
+                        </f7-list-item>
+                        <f7-list-item title="To recover" class="item-input">
+                            <f7-checkbox :disabled="!editMode" v-model:checked="permit.torecover"></f7-checkbox>
                             <template #media>
                                 <f7-icon f7="qrcode"></f7-icon>
                             </template>
-                        </f7-list-input>
+                        </f7-list-item>
                         <f7-list-input type="text" :disabled="!editMode" v-model:value="permit.note" label="Note">
                             <template #media>
                                 <f7-icon f7="device_phone_portrait"></f7-icon>

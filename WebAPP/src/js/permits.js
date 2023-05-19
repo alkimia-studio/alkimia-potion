@@ -6,6 +6,13 @@ export function managePermits(props) {
     const permits = useStore('permits');
     let filteredPermits = ref([]);
     let searchText = ref('');
+    let pagedPermits = ref([]);
+    const quantityForPage = 2;
+    let currentPage = ref(0);
+
+    watch(filteredPermits, (currentFilteredPermits, prevFilteredPermits) => {
+        paginatePermits(1);
+    })
 
     watch(permits, (currentPermits, prevPermits) => {
         searchPermits();
@@ -45,13 +52,31 @@ export function managePermits(props) {
         props.f7router.navigate('/permit/' + id + '/', {})
     };
 
+    const paginatePermits = (pageNumber) => {
+        currentPage.value = pageNumber;
+        const start = (pageNumber - 1) * quantityForPage;
+        const end = start + quantityForPage;
+        pagedPermits.value = filteredPermits.value.slice(start, end);
+
+    };
+
+    const getPermitsTotalPage = () => {
+        let number = Math.ceil(filteredPermits.value.length / quantityForPage);
+        return number;
+    };
+
     return {
         permits,
         searchText,
         filteredPermits,
         addPermit,
         permitDetails,
-        searchPermits
+        searchPermits,
+        getPermitsTotalPage,
+        paginatePermits,
+        pagedPermits,
+        currentPage
+
     };
 };
 

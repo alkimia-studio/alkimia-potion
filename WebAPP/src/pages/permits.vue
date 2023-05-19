@@ -39,7 +39,7 @@
 
             <div class="bg-custom-color-1 border-radius-12 elevation">
                 <div class="row padding border-bottom-solid-2 row-hover"
-                     v-for="permit in filteredPermits"
+                     v-for="permit in pagedPermits"
                      :key="permit.id"
                      @click="permitDetails(permit.id)">
                     <div class="row-cell-30 display-flex align-items-center">
@@ -63,17 +63,18 @@
                 <div class="row padding" v-if="filteredPermits && filteredPermits.length > 0">
                     <div class="row-cell-30">
                         <strong class="display-inline-block margin-right-half">25</strong>
-                        Items per page
+                        Items per page of {{filteredPermits.length}}
                     </div>
                     <div class="row-cell-70 display-flex justify-content-flex-end align-items-center">
                         <div class="page-number-item padding-horizontal padding-vertical-half">
-                            <f7-link icon-f7="chevron_left"></f7-link>
+                            <f7-link icon-f7="chevron_left" @click="paginatePermits(1)"></f7-link>
                         </div>
-                        <div v-for="n in 5" class="page-number-item padding-horizontal padding-vertical-half">
-                            {{n}}
+                        <div v-for="n in getPermitsTotalPage()" @click="paginatePermits(n)" class="page-number-item padding-horizontal padding-vertical-half">
+                            <b v-if="n == currentPage" style="font-size: 24px;">{{n}}</b>
+                            <span v-if="n != currentPage">{{n}}</span>
                         </div>
                         <div class="padding-left padding-vertical-half">
-                            <f7-link icon-f7="chevron_right"></f7-link>
+                            <f7-link icon-f7="chevron_right" @click="paginatePermits(getPermitsTotalPage())"></f7-link>
                         </div>
                     </div>
                 </div>
@@ -90,7 +91,11 @@
             f7router: Object,
         },
         setup(props) {
-            const { permits, addPermit, permitDetails, searchPermits, filteredPermits, searchText } = managePermits(props);
+            const { permits, addPermit, permitDetails, searchPermits, filteredPermits, searchText,
+                getPermitsTotalPage,
+                paginatePermits,
+                pagedPermits,
+                currentPage } = managePermits(props);
 
             return {
                 permits,
@@ -98,7 +103,11 @@
                 searchText,
                 addPermit,
                 permitDetails,
-                searchPermits
+                searchPermits,
+                getPermitsTotalPage,
+                paginatePermits,
+                pagedPermits,
+                currentPage
             }; 
         }
     };

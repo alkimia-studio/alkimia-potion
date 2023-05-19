@@ -8,8 +8,15 @@ export function manageCollaborators(props) {
     let pagedCollaborators = ref([]);
     let searchText = ref('');
 
+    const quantityForPage = 2;
+    let currentPage = ref(0);
+
     watch(collaborators, (currentCollaborators, prevCollaborators) => {
         searchCollaborators();
+    })
+
+    watch(filteredCollaborators, (currentFilteredCollaborators, prevFilteredCollaborators) => {
+        paginateCollaborators(1);
     })
 
     const addCollaborator = () => {
@@ -52,10 +59,20 @@ export function manageCollaborators(props) {
         }
     };
 
-    const pageCollaborators = (pageNumber, quantityForPage) => {
-        let index = pageNumber * quantityForPage;
-        pagedCollaborators = filteredCollaborators.slice(index, quantityForPage)
+    const paginateCollaborators = (pageNumber) => {
+        currentPage.value = pageNumber;
+        const start = (pageNumber - 1) * quantityForPage;
+        const end = start + quantityForPage;
+        pagedCollaborators.value = filteredCollaborators.value.slice(start, end);
+        
     };
+
+    const getCollaboratorsTotalPage = () => {
+        let number = Math.ceil(filteredCollaborators.value.length / quantityForPage);
+        return number;
+    };
+
+    
 
     return {
         searchText,
@@ -63,7 +80,11 @@ export function manageCollaborators(props) {
         collaborators,
         addCollaborator,
         collaboratorDetails,
-        searchCollaborators
+        searchCollaborators,
+        paginateCollaborators,
+        pagedCollaborators,
+        getCollaboratorsTotalPage,
+        currentPage
     };
 }
 

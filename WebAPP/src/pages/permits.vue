@@ -46,7 +46,7 @@
                         <div class="navigator-item-icon margin-right bg-custom-color-2">
                             <f7-icon f7="person" />
                         </div>
-                        <strong>
+                        <strong style="text-transform: capitalize;">
                             {{permit.type}}
                         </strong>
                     </div>

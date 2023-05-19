@@ -52,7 +52,7 @@ export function managePermit(props) {
     const postPermit = (permit) => {
         if (permit.id == 0) {
             permit.timestamp = Date.now();
-            debugger;
+            
             store.dispatch('postPermit', permit).then(function () {
                 props.f7router.navigate('/Permits/');
             })

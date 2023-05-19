@@ -22,7 +22,7 @@
                         <div style="width:70%">
                             <f7-input type="text"
                                       v-model:value="searchText"
-                                      placeholder="Search for Name, Surname, Email and Phone number"
+                                      placeholder="Search for Collaborator Name and Surname"
                                       class="input-blank"
                                       clear-button />
                         </div>

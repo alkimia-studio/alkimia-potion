@@ -54,7 +54,7 @@
                         {{equipment.type}}
                     </div>
                     <div class="row-cell-30">
-                        {{equipment.purchasedate}}
+                        {{$root.f7params.moment(equipment.purchasedate)}}
                     </div>
                     <div class="row-cell-10 text-align-right">
                         <f7-icon f7="chevron_right" color="gray"></f7-icon>

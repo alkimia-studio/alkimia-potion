@@ -1,6 +1,10 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using DocumentFormat.OpenXml;
+using DocumentFormat.OpenXml.Packaging;
+using DocumentFormat.OpenXml.Spreadsheet;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Net;
 using WebAPI.Models;
 
 namespace WebAPI.Controllers
@@ -75,6 +79,70 @@ namespace WebAPI.Controllers
             _context.SaveChanges();
 
             return NoContent();
+        }
+
+        [HttpGet("export")]
+        public HttpResponseMessage Export()
+        {
+            using (SpreadsheetDocument document = SpreadsheetDocument.Create("export.xlsx", SpreadsheetDocumentType.Workbook))
+            {
+                // Creazione del foglio di lavoro
+                WorkbookPart workbookPart = document.AddWorkbookPart();
+                workbookPart.Workbook = new Workbook();
+
+                // Creazione del foglio di calcolo
+                WorksheetPart worksheetPart = workbookPart.AddNewPart<WorksheetPart>();
+                worksheetPart.Worksheet = new Worksheet(new SheetData());
+
+                // Aggiunta dei dati al foglio di calcolo
+                SheetData sheetData = worksheetPart.Worksheet.GetFirstChild<SheetData>();
+
+                // Recupero dei dati dal tuo database
+                List<string> datiDalDatabase = RecuperaDatiDalDatabase();
+
+                // Aggiunta dei dati al foglio di calcolo
+                foreach (string dato in datiDalDatabase)
+                {
+                    Row row = new Row();
+                    Cell cell = new Cell();
+                    cell.CellValue = new CellValue(dato);
+                    cell.DataType = new EnumValue<CellValues>(CellValues.String);
+                    row.Append(cell);
+                    sheetData.Append(row);
+                }
+
+                // Salvataggio del documento Excel
+                workbookPart.Workbook.Save();
+                document.Close();
+            }
+
+            // Lettura del file Excel generato
+            byte[] fileBytes = System.IO.File.ReadAllBytes("export.xlsx");
+
+            // Creazione della risposta HTTP
+            HttpResponseMessage response = new HttpResponseMessage(HttpStatusCode.OK);
+            response.Content = new ByteArrayContent(fileBytes);
+            response.Content.Headers.ContentDisposition = new System.Net.Http.Headers.ContentDispositionHeaderValue("attachment");
+            response.Content.Headers.ContentDisposition.FileName = "export.xlsx";
+            response.Content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+
+            return response;
+
+        }
+
+        private List<string> RecuperaDatiDalDatabase()
+        {
+            // Logica per recuperare i dati dal tuo database
+            // Restituisci i dati come una lista di stringhe
+            // Esempio di implementazione fittizia:
+            List<string> datiDalDatabase = new List<string>
+        {
+            "Dato 1",
+            "Dato 2",
+            "Dato 3"
+        };
+
+            return datiDalDatabase;
         }
     }
 }

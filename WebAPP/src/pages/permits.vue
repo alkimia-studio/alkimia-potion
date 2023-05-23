@@ -4,6 +4,14 @@
             <div class="display-flex justify-content-space-between">
                 <h1>Permits</h1>
                 <div class="margin-vertical margin-left">
+                    <f7-button fill @click="exportFile" color="white">
+                        <f7-icon f7="plus_circle" color="teal"></f7-icon>
+                        <strong class="display-inline-block padding-left-half">
+                            Export
+                        </strong>
+                    </f7-button>
+                </div>
+                <div class="margin-vertical margin-left">
                     <f7-button fill @click="addPermit" color="white">
                         <f7-icon f7="plus_circle" color="teal"></f7-icon>
                         <strong class="display-inline-block padding-left-half">
@@ -84,6 +92,7 @@
 </template>
 <script>
     import { managePermits } from '../js/permits';
+    import API from "../js/api";
 
     export default {
         props: {
@@ -97,6 +106,25 @@
                 pagedPermits,
                 currentPage } = managePermits(props);
 
+
+            const exportFile = () => {
+                API.exportPermits()
+                    .then(data => {
+                        debugger;
+                        var FILE = window.URL.createObjectURL(new Blob([data.data]));
+
+                        var docUrl = document.createElement('x');
+                        docUrl.href = FILE;
+                        docUrl.setAttribute('download', 'import-excel-template.xls');
+                        document.body.appendChild(docUrl);
+                        docUrl.click();
+
+
+                       // return data;
+                    })
+                    .catch(err => console.log(err))
+            };
+
             return {
                 permits,
                 filteredPermits,
@@ -107,7 +135,8 @@
                 getPermitsTotalPage,
                 paginatePermits,
                 pagedPermits,
-                currentPage
+                currentPage,
+                exportFile
             }; 
         }
     };

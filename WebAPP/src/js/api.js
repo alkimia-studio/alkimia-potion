@@ -260,4 +260,23 @@ export default class API {
 
         return dataPromise
     }
+
+    static exportPermits() {
+        var config = {
+            method: 'get',
+            url: _apiUrl + 'Permits/Export',
+            headers: {}
+        };
+
+        const dataPromise = axios(config)
+            .then(function (response) {
+                return response.data;
+            })
+            .catch(function (error) {
+                console.log(error);
+                return Promise.reject(error);
+            });
+
+        return dataPromise
+    }
 }

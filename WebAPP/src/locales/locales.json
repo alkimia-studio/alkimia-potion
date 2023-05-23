@@ -1,0 +1,13 @@
+{
+    "it": {
+        "message": {
+            "hello": "Ciao test localizzazione"
+        }
+
+    },
+    "en": {
+        "message": {
+            "hello": "Hello localization test"
+        }
+    }
+}

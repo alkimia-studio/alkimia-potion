@@ -2,7 +2,7 @@
     <f7-page name="equipments">
         <div class="page-content-wrapper">
             <div class="display-flex justify-content-space-between">
-                <h1>Assets</h1>
+                <h1>Assets {{ $t("message.hello") }}</h1>
                 <div class="margin-vertical margin-left">
                     <f7-button fill @click="addEquipment" color="white">
                         <f7-icon f7="plus_circle" color="teal"></f7-icon>

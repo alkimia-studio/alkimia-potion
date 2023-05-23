@@ -20,8 +20,9 @@ import '../css/app.css';
 import App from '../components/app.vue';
 
 const i18n = createI18n({
-    locale: 'it',
-    fallbackLocale: 'it',
+    locale: 'en',
+    legacy: false,
+    fallbackLocale: 'en',
     messages: locales
 })
 

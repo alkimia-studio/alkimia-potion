@@ -153,6 +153,10 @@
     const appFirebase = initializeApp(firebaseConfig);
     //initialize firebase auth
     const auth = getAuth(appFirebase);
+
+    import { useI18n } from 'vue-i18n';
+
+
     //Import moment
     import momentLibrary from 'moment';
     import 'moment/locale/it'; 
@@ -182,6 +186,11 @@
             const password = ref('');
             const error = useStore(store, 'lastError');
             const isOpened = error != null;
+            const { t, locale } = useI18n();
+
+            
+
+
             const Login = () => {
                 try {
                     signInWithEmailAndPassword(auth, username.value, password.value)
@@ -231,6 +240,10 @@
                         store.dispatch("initData");
                     }
                     auth.onAuthStateChanged(user => {
+
+                        // QUI POTRAI SETTARE LA LINGUA DELL'UTENTE NEL CASO IN CUI ABBIA UNA LINGUA CUSTOM: PER ORA SETTIAMO AD ITALIANO
+                        // locale.value = 'it'; // Imposta la lingua italiana
+
                         if (user) {
                             // User is signed in, see docs for a list of available properties
                             // https://firebase.google.com/docs/reference/js/auth.user
@@ -251,7 +264,8 @@
                 Logout,
                 error,
                 isOpened,
-                redirect
+                redirect,
+                t
             }
         }
     }

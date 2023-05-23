@@ -51,10 +51,10 @@
                         </strong>
                     </div>
                     <div class="row-cell-30">
-                        {{permit.from}}
+                        {{$root.f7params.moment(permit.from).format('l LT')}}
                     </div>
                     <div class="row-cell-30">
-                        {{permit.to}}
+                        {{$root.f7params.moment(permit.to).format('l LT')}}
                     </div>
                     <div class="row-cell-10 text-align-right">
                         <f7-icon f7="chevron_right" color="gray"></f7-icon>

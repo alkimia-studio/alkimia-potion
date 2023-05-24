@@ -1,13 +1,132 @@
 {
     "it": {
-        "message": {
-            "hello": "Ciao test localizzazione"
+        "generic": {
+            "search": "Cerca",
+            "itemsForPage": "Elementi per pagina di",
+            "delete": "Cancella",
+            "save": "Salva"
+        },
+        "dashboard": {
+            "chooseLanguage": "Scegli la lingua",
+            "text1": "Piccolo gestionale per le attività di Alkimia:",
+            "text2": "gestione dei collaboratori",
+            "text3": "gestine dei permessi e delle ferie",
+            "text4": "gestione dei beni aziendali"
+        },
+        "menu": {
+            "menu1": "Permessi",
+            "menu2": "Beni Aziendali",
+            "menu3": "Collaboratori"
+        },
+        "collaborators": {
+            "collaborator": "Collaborarore",
+            "collaborators": "Collaborarori",
+            "addCollaborator": "Aggiungi Collaboratore",
+            "searchPlaceHolder": "Cerca per Nome, Cognome, Email o numero di telefono",
+            "name": "Nome",
+            "surname": "Cognome",
+            "address": "Indirizzo",
+            "cf": "Codice fiscale",
+            "docnumber": "Numero del documento",
+            "iban": "IBAN",
+            "phone": "Tel.",
+            "email": "Email",
+            "personaleemail": "Email personale",
+            "pec": "Email PEC",
+            "note": "Note"
+        },
+        "assets": {
+            "asset": "Bene Aziendale",
+            "assets": "Beni Aziendali",
+            "addAsset": "Aggiungi Bene Aziendale",
+            "searchPlaceHolder": "Cerca per Nome, Descrizione o Serial Number",
+            "collaborator": "Collaboratore",
+            "name": "Nome",
+            "description": "Descrizione",
+            "sn": "Serial number",
+            "invoice": "Fattura",
+            "purchaseDate": "Data di acquisto",
+            "type": "Tipo",
+            "price": "Prezzo",
+            "note": "Note"
+        },
+        "permits": {
+            "permit": "Permesso",
+            "permits": "Permessi",
+            "addPermit": "Aggiungi Permesso",
+            "searchPlaceHolder": "Cerca per Nome o Cognome del Collaboratore",
+            "collaborator": "Collaboratore",
+            "type": "Tipo",
+            "from": "Dal",
+            "to": "Al",
+            "allday": "Tutto il giorno",
+            "torecover": "Da recuperare",
+            "note": "Note"
         }
-
     },
     "en": {
-        "message": {
-            "hello": "Hello localization test"
+        "generic": {
+            "search": "Search",
+            "itemsForPage": "Items for page of",
+            "delete": "Delete",
+            "save": "Save"
+        },
+        "dashboard": {
+            "chooseLanguage": "Choose the language",
+            "text1": "Small management app of the Alkimia activities:",
+            "text2": "management of collaborators",
+            "text3": "management of permits and holidays",
+            "text4": "management of business equipments"
+        },
+        "menu": {
+            "menu1": "Permits",
+            "menu2": "Assets",
+            "menu3": "Collaborators"
+        },
+        "collaborators": {
+            "collaborator": "Collaboraror",
+            "collaborators": "Collaborators",
+            "addCollaborator": "Add Collaborator",
+            "searchPlaceHolder": "Search for Name, Surname, Email or Phone number",
+            "name": "Name",
+            "surname": "Surame",
+            "address": "Address",
+            "cf": "Fiscal Code",
+            "docnumber": "Document no.",
+            "iban": "IBAN",
+            "phone": "Phone no.",
+            "email": "Email",
+            "personaleemail": "Email personal",
+            "pec": "Email PEC",
+            "note": "Note"
+        },
+        "assets": {
+            "asset": "Asset",
+            "assets": "Assets",
+            "addAsset": "Add Asset",
+            "searchPlaceHolder": "Search for Name, Description, or Serial number",
+            "collaborator": "Collaborator",
+            "name": "Name",
+            "description": "Description",
+            "sn": "Serial number",
+            "invoice": "Invoice",
+            "purchaseDate": "Purchase date",
+            "type": "Type",
+            "price": "Price",
+            "note": "Note"
+        },
+        "permits": {
+            "permit": "Permit",
+            "permits": "Permits",
+            "addPermit": "Add Permit",
+            "searchPlaceHolder": "Search for Collaborator Name or Surname",
+            "collaborator": "Collaborator",
+            "type": "Type",
+            "from": "From",
+            "to": "To",
+            "allday": "All day",
+            "torecover": "To recover",
+            "note": "Note"
         }
     }
 }

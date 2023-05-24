@@ -2,7 +2,7 @@
     <f7-page name="permits">
         <div class="page-content-wrapper">
             <div class="display-flex justify-content-space-between">
-                <h1>Permits</h1>
+                <h1>{{ $t("permits.permits") }}</h1>
                 <div class="margin-vertical margin-left">
                     <f7-button fill @click="exportFile" color="white">
                         <f7-icon f7="plus_circle" color="teal"></f7-icon>
@@ -15,7 +15,7 @@
                     <f7-button fill @click="addPermit" color="white">
                         <f7-icon f7="plus_circle" color="teal"></f7-icon>
                         <strong class="display-inline-block padding-left-half">
-                            Add Permit
+                            {{ $t("permits.addPermit") }}
                         </strong>
                     </f7-button>
                 </div>
@@ -30,7 +30,7 @@
                         <div style="width:70%">
                             <f7-input type="text"
                                       v-model:value="searchText"
-                                      placeholder="Search for Collaborator Name and Surname"
+                                      :placeholder="$t('permits.searchPlaceHolder')"
                                       class="input-blank"
                                       clear-button />
                         </div>
@@ -38,7 +38,7 @@
                     <div class="row-cell-20 text-align-right">
                         <f7-button fill @click="searchPermits(searchText)" class="padding-horizontal display-inline-block">
                             <strong class="display-inline-block">
-                                Search
+                                {{ $t("generic.search") }}
                             </strong>
                         </f7-button>
                     </div>
@@ -71,7 +71,7 @@
                 <div class="row padding" v-if="filteredPermits && filteredPermits.length > 0">
                     <div class="row-cell-30">
                         <strong class="display-inline-block margin-right-half">25</strong>
-                        Items per page of {{filteredPermits.length}}
+                        {{ $t("generic.itemsForPage") }} {{filteredPermits.length}}
                     </div>
                     <div class="row-cell-70 display-flex justify-content-flex-end align-items-center">
                         <div class="page-number-item padding-horizontal padding-vertical-half">

@@ -48,7 +48,7 @@
                             </div>
                         </template>
                         <template #title>
-                            <f7-link class="navigator-item-link" tab-link="#view-permits" tab-link-active text="Permits"></f7-link>
+                            <f7-link class="navigator-item-link" tab-link="#view-permits" tab-link-active :text="$t('menu.menu1')"></f7-link>
                         </template>
                     </f7-list-item>
                     <f7-list-item>
@@ -58,7 +58,7 @@
                             </div>
                         </template>
                         <template #title>
-                            <f7-link class="navigator-item-link" tab-link="#view-equipments" tab-link-active text="Assets"></f7-link>
+                            <f7-link class="navigator-item-link" tab-link="#view-equipments" tab-link-active :text="$t('menu.menu2')"></f7-link>
                         </template>
                     </f7-list-item>
                     <f7-list-item>
@@ -68,7 +68,7 @@
                             </div>
                         </template>
                         <template #title>
-                            <f7-link class="navigator-item-link" tab-link="#view-collaborators" tab-link-active text="Collaborators"></f7-link>
+                            <f7-link class="navigator-item-link" tab-link="#view-collaborators" tab-link-active :text="$t('menu.menu3')"></f7-link>
                         </template>
                     </f7-list-item>
 

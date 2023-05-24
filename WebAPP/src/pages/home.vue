@@ -3,25 +3,23 @@
         <f7-block>
             <h2>Alkimia potion</h2>
 
-            <h3>Scegli la lingua</h3>
+            <h3>{{ $t("dashboard.chooseLanguage") }}</h3>
             <f7-input type="select"
-                      label="Scegli la lingua"
-                      placeholder="please choose"
+                      :label="$t('dashboard.chooseLanguage')"
+                      :placeholder="$t('dashboard.chooseLanguage')"
                       v-model:value="language"
                       @change="setLanguage()">
                 <option value="en">Inglese</option>
                 <option value="it">Italiano</option>
             </f7-input>
 
-
-
             <!-- Page content-->
             <f7-block>
-                <p>Small management app of the Alkimia activities:</p>
+                <p>{{ $t("dashboard.text1") }}</p>
                 <ul>
-                    <li>management of collaborators</li>
-                    <li>management of permits and holidays</li>
-                    <li>management of business equipments</li>
+                    <li>{{ $t("dashboard.text2") }}</li>
+                    <li>{{ $t("dashboard.text3") }}</li>
+                    <li>{{ $t("dashboard.text4") }}</li>
                 </ul>
             </f7-block>
 
@@ -50,8 +48,6 @@
             const { t, locale } = useI18n();
 
             const setLanguage = () => {
-                
-                debugger
                 locale.value = language.value; // Imposta la lingua italiana
             };
 

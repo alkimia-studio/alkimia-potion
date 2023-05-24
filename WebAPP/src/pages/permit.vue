@@ -7,7 +7,7 @@
                     <f7-button back
                                icon-f7="arrow_left"
                                class="display-inline-block"></f7-button>
-                    <h1>Permit</h1>
+                    <h1>{{ $t("permits.permit") }}</h1>
                 </div>
             </div>
 
@@ -26,7 +26,7 @@
                                        class="display-inline-block padding-horizontal margin-right">
                                 <f7-icon f7="trash" color="red"></f7-icon>
                                 <strong class="display-inline-block padding-left-half">
-                                    Delete
+                                    {{ $t("generic.delete") }}
                                 </strong>
                             </f7-button>
                             <f7-button v-if="editMode"
@@ -36,7 +36,7 @@
                                        class="display-inline-block padding-horizontal">
                                 <f7-icon f7="floppy_disk" color="primary"></f7-icon>
                                 <strong class="display-inline-block padding-left-half">
-                                    Save
+                                    {{ $t("generic.save") }}
                                 </strong>
                             </f7-button>
                         </div>
@@ -47,42 +47,42 @@
             <div class="bg-custom-color-1 border-radius-12 elevation margin-bottom">
                 <div class="row padding border-bottom-solid-2">
                     <f7-list class="width-100 no-margin-top">
-                        <f7-list-input type="select" :disabled="!editMode" placeholder="Please choose collaborator..." v-model:value="permit.collaborator" label="Collaborator">
+                        <f7-list-input type="select" :disabled="!editMode" placeholder="Please choose collaborator..." v-model:value="permit.collaborator" :label="$t('permits.collaborator')">
                             <option v-for="(col, index) in collaborators" :value="col.id">{{col.name + " " + col.surname}}</option>
                             <template #media>
                                 <f7-icon f7="person_2"></f7-icon>
                             </template>
                         </f7-list-input>
 
-                        <f7-list-input type="select" :disabled="!editMode" placeholder="type..." v-model:value="permit.type" label="Type">
+                        <f7-list-input type="select" :disabled="!editMode" placeholder="type..." v-model:value="permit.type" :label="$t('permits.type')">
                             <option value="ferie">Ferie</option>
                             <option value="permesso">Permesso</option>
                             <option value="malattia">Malattia</option>
                         </f7-list-input>
 
-                        <f7-list-input type="datetime-local" :disabled="!editMode" v-model:value="permit.from" label="From">
+                        <f7-list-input type="datetime-local" :disabled="!editMode" v-model:value="permit.from" :label="$t('permits.from')">
                             <template #media>
                                 <f7-icon f7="house"></f7-icon>
                             </template>
                         </f7-list-input>
-                        <f7-list-input type="datetime-local" :disabled="!editMode" v-model:value="permit.to" label="To">
+                        <f7-list-input type="datetime-local" :disabled="!editMode" v-model:value="permit.to" :label="$t('permits.to')">
                             <template #media>
                                 <f7-icon f7="doc_text_viewfinder"></f7-icon>
                             </template>
                         </f7-list-input>
-                        <f7-list-item title="All day" class="item-input">
+                        <f7-list-item :title="$t('permits.allday')" class="item-input">
                             <f7-checkbox :disabled="!editMode" v-model:checked="permit.allday" ></f7-checkbox>
                             <template #media>
                                 <f7-icon f7="doc_person"></f7-icon>
                             </template>
                         </f7-list-item>
-                        <f7-list-item title="To recover" class="item-input">
+                        <f7-list-item :title="$t('permits.torecover')" class="item-input">
                             <f7-checkbox :disabled="!editMode" v-model:checked="permit.torecover"></f7-checkbox>
                             <template #media>
                                 <f7-icon f7="qrcode"></f7-icon>
                             </template>
                         </f7-list-item>
-                        <f7-list-input type="text" :disabled="!editMode" v-model:value="permit.note" label="Note">
+                        <f7-list-input type="text" :disabled="!editMode" v-model:value="permit.note" :label="$t('permits.note')">
                             <template #media>
                                 <f7-icon f7="device_phone_portrait"></f7-icon>
                             </template>

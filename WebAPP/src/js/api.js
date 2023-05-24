@@ -1,5 +1,5 @@
-const _apiUrl = "https://localhost:7237/";
-//const _apiUrl = "https://api.alkimia.cloud/";
+//const _apiUrl = "https://localhost:7237/";
+const _apiUrl = "https://api.alkimia.cloud/";
 
 import axios from 'axios'
 

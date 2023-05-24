@@ -19,8 +19,8 @@
             "menu3": "Collaboratori"
         },
         "collaborators": {
-            "collaborator": "Collaborarore",
-            "collaborators": "Collaborarori",
+            "collaborator": "Collaboratore",
+            "collaborators": "Collaboratori",
             "addCollaborator": "Aggiungi Collaboratore",
             "searchPlaceHolder": "Cerca per Nome, Cognome, Email o numero di telefono",
             "name": "Nome",

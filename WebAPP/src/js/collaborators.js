@@ -8,7 +8,7 @@ export function manageCollaborators(props) {
     let pagedCollaborators = ref([]);
     let searchText = ref('');
 
-    const quantityForPage = 2;
+    const quantityForPage = 15;
     let currentPage = ref(0);
 
     watch(collaborators, (currentCollaborators, prevCollaborators) => {

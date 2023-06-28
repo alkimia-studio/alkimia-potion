@@ -7,7 +7,7 @@ export function manageEquipments(props) {
     let filteredEquipments = ref([]);
     let searchText = ref('');
     let pagedEquipments = ref([]);
-    const quantityForPage = 2;
+    const quantityForPage = 15;
     let currentPage = ref(0);
 
     watch(filteredEquipments, (currentFilteredEquipments, prevFilteredEquipments) => {

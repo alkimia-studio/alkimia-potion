@@ -7,7 +7,7 @@ export function managePermits(props) {
     let filteredPermits = ref([]);
     let searchText = ref('');
     let pagedPermits = ref([]);
-    const quantityForPage = 2;
+    const quantityForPage = 15;
     let currentPage = ref(0);
 
     watch(filteredPermits, (currentFilteredPermits, prevFilteredPermits) => {
